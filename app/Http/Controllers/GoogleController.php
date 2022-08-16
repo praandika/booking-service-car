@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Socialite;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
+
 
 class GoogleController extends Controller
 {
@@ -23,12 +24,13 @@ class GoogleController extends Controller
                 return redirect()->route('home');
             }else{
                 $newUser = New User;
-                $newUser->username = $user->id;
+                $newUser->username = $user->email;
                 $newUser->name = $user->name;
                 $newUser->email = $user->email;
                 $newUser->google_id = $user->id;
                 $newUser->avatar = $user->avatar;
                 $newUser->password = bcrypt('12345678');
+                $newUser->access = 'customer';
                 $newUser->save();
 
                 Auth::login($newUser);
