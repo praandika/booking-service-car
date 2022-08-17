@@ -17,7 +17,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet">
-
+    @stack('before-css')
     <!-- Vendor CSS Files -->
     <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -28,7 +28,7 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-
+    @stack('after-css')
     <!-- =======================================================
   * Template Name: Day - v4.8.0
   * Template URL: https://bootstrapmade.com/day-multipurpose-html-template-for-free/
@@ -64,12 +64,17 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
+                    @if(Route::is('member.booking') || Route::is('member.goto-tanggal') || Route::is('member.goto-waktu') || Route::is('member.goto-form'))
+                    <li><a class="nav-link scrollto" href="{{ route('home') }}">Beranda</a></li>
+                    <li><a class="nav-link scrollto active" href="#cta">Booking</a></li>
+                    @else
                     <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
                     <li><a class="nav-link scrollto" href="#cta">Booking</a></li>
                     <li><a class="nav-link scrollto" href="#services">Layanan</a></li>
                     <li><a class="nav-link scrollto " href="#pricing">Harga</a></li>
                     <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
                     <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
+                    @endif
                     <!-- Authentication Links -->
                     @guest
                     @if (Route::has('login'))
@@ -198,6 +203,7 @@
             class="bi bi-arrow-up-short"></i></a>
     <div id="preloader"></div>
 
+    @stack('before-script')
     <!-- Vendor JS Files -->
     <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -208,6 +214,7 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    @stack('after-script')
 </body>
 
 </html>

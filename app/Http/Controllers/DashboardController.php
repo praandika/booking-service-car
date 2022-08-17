@@ -17,7 +17,50 @@ class DashboardController extends Controller
 
     public function member(){
         $date = Carbon::now('GMT+8');
-        return view('member.index', compact('date'));
+        $serviceCount = Booking::where([
+            ['user_id', Auth::user()->id],
+            ['status','!=','selesai'],
+        ])
+        ->count();
+
+        $estimasiBiaya = Booking::where([
+            ['user_id', Auth::user()->id],
+            ['status','!=','selesai'],
+        ])
+        ->sum('estimation');
+
+        $reschedule = Booking::where([
+            ['user_id', Auth::user()->id],
+            ['status','!=','selesai'],
+            ['reschedule','1'],
+        ])
+        ->count();
+
+        $tertunda = Booking::where([
+            ['user_id', Auth::user()->id],
+            ['status','=','tertunda'],
+        ])
+        ->count();
+
+        $dikerjakan = Booking::where([
+            ['user_id', Auth::user()->id],
+            ['status','=','dikerjakan'],
+        ])
+        ->count();
+
+        $selesai = Booking::where([
+            ['user_id', Auth::user()->id],
+            ['status','=','selesai'],
+        ])
+        ->count();
+
+        $data = Booking::where([
+            ['user_id', Auth::user()->id],
+            ['status','!=','selesai'],
+        ])
+        ->orderBy('date','desc')
+        ->get();
+        return view('member.index', compact('date','data','serviceCount','estimasiBiaya','reschedule','tertunda','dikerjakan','selesai'));
     }
 
     public function memberBookingList(){
@@ -30,6 +73,12 @@ class DashboardController extends Controller
 
     public function memberHistory(){
         $date = Carbon::now('GMT+8');
-        return view('member.history', compact('date'));
+        $data = Booking::where([
+            ['user_id', Auth::user()->id],
+            ['status','selesai'],
+        ])
+        ->orderBy('date','desc')
+        ->get();
+        return view('member.history', compact('date','data'));
     }
 }

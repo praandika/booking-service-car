@@ -27,6 +27,11 @@ Route::get('auth/google/callback', [GoogleController::class, 'googleCallback'])-
 Route::get('member', [DashboardController::class, 'member'])->name('member');
 Route::get('member/booking-list', [DashboardController::class, 'memberBookingList'])->name('member.booking-list');
 Route::get('member/history', [DashboardController::class, 'memberHistory'])->name('member.history');
+Route::get('member/booking', [HomeController::class, 'booking'])->name('member.booking')->middleware('auth');
+Route::get('member/booking-tanggal', [HomeController::class, 'tanggal'])->name('member.goto-tanggal')->middleware('auth');
+Route::get('member/booking-waktu', [HomeController::class, 'waktu'])->name('member.goto-waktu')->middleware('auth');
+Route::get('member/booking-form', [HomeController::class, 'form'])->name('member.goto-form')->middleware('auth');
+Route::post('member/booking-store', [HomeController::class, 'storeBooking'])->name('member.store-booking')->middleware('auth');
 /** END Member Route */
 
 /** Admin Route */

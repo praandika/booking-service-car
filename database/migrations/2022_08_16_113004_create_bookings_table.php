@@ -19,17 +19,18 @@ return new class extends Migration
             $table->string('frame_no')->nullable();
             $table->string('service');
             $table->string('plate_no');
-            $table->string('complaint');
+            $table->string('complaint')->nullable();
             $table->string('brand');
             $table->string('type');
             $table->string('color');
             $table->integer('year');
-            $table->enum('facility',['jemput','datang']);
+            $table->enum('facility',['datang','jemput']);
             $table->string('transmition');
             $table->date('date');
             $table->time('time');
             $table->integer('estimation');
             $table->enum('status',['tertunda','dikerjakan','selesai']);
+            $table->enum('reschedule',['0','1']);
             $table->timestamps();
         });
     }
