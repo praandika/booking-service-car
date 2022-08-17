@@ -3,60 +3,59 @@
     <div class="container">
 
         <div class="section-title">
-            <span>Pricing</span>
-            <h2>Pricing</h2>
-            <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+            <span>Harga</span>
+            <h2>Harga</h2>
+            <p>Harga masuk akal dengan kualitas terbaik</p>
         </div>
 
         <div class="row">
 
             <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="150">
                 <div class="box">
-                    <h3>Free</h3>
-                    <h4><sup>$</sup>0<span> / month</span></h4>
+                    <h3>Servis Mesin</h3>
+                    <h4><sup>Rp</sup>180K - 600K<span></span></h4>
                     <ul>
-                        <li>Aida dere</li>
-                        <li>Nec feugiat nisl</li>
-                        <li>Nulla at volutpat dola</li>
-                        <li class="na">Pharetra massa</li>
-                        <li class="na">Massa ultricies mi</li>
+                        <li>Servis Ringan</li>
+                        <li>Servis Berkala</li>
+                        <li>Ganti Oli</li>
+                        <li>Tune Up</li>
                     </ul>
                     <div class="btn-wrap">
-                        <a href="#" class="btn-buy">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 mt-4 mt-md-0" data-aos="zoom-in">
-                <div class="box featured">
-                    <h3>Business</h3>
-                    <h4><sup>$</sup>19<span> / month</span></h4>
-                    <ul>
-                        <li>Aida dere</li>
-                        <li>Nec feugiat nisl</li>
-                        <li>Nulla at volutpat dola</li>
-                        <li>Pharetra massa</li>
-                        <li class="na">Massa ultricies mi</li>
-                    </ul>
-                    <div class="btn-wrap">
-                        <a href="#" class="btn-buy">Buy Now</a>
+                        <a href="#" class="btn-buy">Booking</a>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="150">
-                <div class="box">
-                    <h3>Developer</h3>
-                    <h4><sup>$</sup>29<span> / month</span></h4>
+                <div class="box featured">
+                    <h3>Body Repair</h3>
+                    <h4><sup>Rp</sup>300K - 800K<span></span></h4>
                     <ul>
-                        <li>Aida dere</li>
-                        <li>Nec feugiat nisl</li>
-                        <li>Nulla at volutpat dola</li>
-                        <li>Pharetra massa</li>
-                        <li>Massa ultricies mi</li>
+                        <li>Cat Body</li>
+                        <li>Panel Pintu</li>
+                        <li>Spakbor</li>
+                        <li>Bumper</li>
+                        <li>Sidekirt</li>
+                        <li>Spoiler</li>
+                        <li>Kap Mesin & Bagasi</li>
+                        <li>Atap Mobil</li>
                     </ul>
                     <div class="btn-wrap">
-                        <a href="#" class="btn-buy">Buy Now</a>
+                        <a href="#" class="btn-buy">Booking</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mt-4 mt-md-0" data-aos="zoom-in">
+                <div class="box">
+                    <h3>Pick Up</h3>
+                    <h4><sup>Rp</sup>180K - 1JT<span></span></h4>
+                    <ul>
+                        <li>Servis Mesin atau Body Repair</li>
+                        <li>Layanan Jemput Mobil</li>
+                    </ul>
+                    <div class="btn-wrap">
+                        <a href="#" class="btn-buy">Booking</a>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@
 <div class="az-signup-wrapper">
     <div class="az-column-signup-left">
         <div>
-            <h1 class="az-logo"><img src="{{ asset('img/Motohid-HD-b.png') }}" width="150px"></h1>
+            <h1 class="az-logo"><a href="{{ route('home') }}"><img src="{{ asset('img/Motohid-HD-b.png') }}" width="150px"></a></h1>
             <h5>Bengkel Mobil Motohid</h5>
             <p>Bengkel mobil motohid (pak tauhid) (Perbaikan mobil) berlokasi di Jawa Timur, Indonesia. 
                 Daerah atau landmark terdekat adalah Singojuruh. 
@@ -17,7 +17,7 @@
         </div>
     </div><!-- az-column-signup-left -->
     <div class="az-column-signup">
-        <h1 class="az-logo"><img src="{{ asset('img/Motohid-HD-b.png') }}" width="150px"></h1>
+        <h1 class="az-logo"><a href="{{ route('home') }}"><img src="{{ asset('img/Motohid-HD-b.png') }}" width="150px"></a></h1>
         <div class="az-signup-header">
             <h2>Masuk</h2>
             <h4>Tolong masuk untuk melanjutkan</h4>
