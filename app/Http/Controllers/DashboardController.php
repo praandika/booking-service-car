@@ -81,4 +81,16 @@ class DashboardController extends Controller
         ->get();
         return view('member.history', compact('date','data'));
     }
+
+    public function reschedule($id){
+        $date = Carbon::now('GMT+8');
+        $data = Booking::find($id)->first();
+        return view('member.reschedule', compact('data','date'));
+    }
+
+    public function updateBooking(Request $request, Booking $booking){
+
+        toast('Jadwal Ulang sukses','success');
+        return redirect()->route('member');
+    }
 }

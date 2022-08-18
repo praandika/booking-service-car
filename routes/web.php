@@ -32,6 +32,8 @@ Route::get('member/booking-tanggal', [HomeController::class, 'tanggal'])->name('
 Route::get('member/booking-waktu', [HomeController::class, 'waktu'])->name('member.goto-waktu')->middleware('auth');
 Route::get('member/booking-form', [HomeController::class, 'form'])->name('member.goto-form')->middleware('auth');
 Route::post('member/booking-store', [HomeController::class, 'storeBooking'])->name('member.store-booking')->middleware('auth');
+Route::get('member/booking-reschedule/{id}', [DashboardController::class, 'reschedule']);
+Route::put('member/booking-update', [DashboardController::class, 'updateBooking'])->name('member.update-booking');
 /** END Member Route */
 
 /** Admin Route */

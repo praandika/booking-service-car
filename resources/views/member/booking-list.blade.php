@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Member Area')
+@section('title','Member Area | Daftar Booking')
 @section('dash-title','Daftar Booking')
 
 @section('content')

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Member Area')
+@section('title','Member Area | Riwayat')
 @section('dash-title','Riwayat')
 
 @section('content')

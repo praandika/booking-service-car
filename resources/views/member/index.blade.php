@@ -98,7 +98,7 @@
                     <td>{{ $o->frame_no }}</td>
                     <td><span class="{{ ($o->status == 'tertunda') ? 'label-pending' : (($o->status == 'dikerjakan') ? 'label-progress' : 'label-success')  }}">{{ ucwords($o->status) }}</span></td>
                     <td>
-                        <a href="" class="btn btn-success"> <i class="typcn typcn-arrow-sync"></i> Jadwal Ulang</a>
+                        <a href="{{ url('member/booking-reschedule',$o->id) }}" class="btn btn-success"> <i class="typcn typcn-arrow-sync"></i> Jadwal Ulang</a>
                     </td>
                 </tr>
                 @empty
