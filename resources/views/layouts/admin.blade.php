@@ -125,6 +125,9 @@
     <script src="{{ asset('admin/js/jquery.cookie.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/moment.js') }}"></script>
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    
+    <!-- SweetAlert -->
+    @include('sweetalert::alert')
 
     <script>
         $(document).ready(function() {

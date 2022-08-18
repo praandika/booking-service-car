@@ -26,6 +26,25 @@
             color: #fff;
         }
 
+        input.form-control,
+        select.form-control{
+            border-radius: 0px;
+        }
+
+        input.form-control:focus,
+        select.form-control:focus{
+            box-shadow: none;
+            border-color: #cc1616;
+        }
+
+        h5{
+            font-weight: bold;
+        }
+
+        label{
+            color: #c2c2c2;
+        }
+
     </style>
 @endpush
 
@@ -38,80 +57,97 @@
     <div class="row" data-aos="fade-up">
         <div class="col-lg-12">
             <form action="{{ route('member.store-booking') }}" method="POST">
-                @csrf    
+                @csrf
+                <input type="hidden" name="estimation" value="{{ ($layanan = 'Service Mesin') ? 250000 : 500000 }}">
+                <input type="hidden" value="{{ Auth::user()->id }}" name="user_id" required>
+                <input type="hidden" class="form-control" name="service" value="{{ $layanan }}" required>
+                <input type="hidden" class="form-control" name="date" value="{{ $tanggal }}" required>
+                <input type="hidden" class="form-control" name="time" value="{{ $waktu }}" required>
+
                 <div class="row">
-                    <div class="col-md-6 form-group">
-                        <input type="text" class="form-control" id="name" value="{{ Auth::user()->name }}" required>
-                        <input type="hidden" value="{{ Auth::user()->id }}" name="user_id">
+                    <div class="col-md-4">
+                        <label for="">Nama</label>
+                        <h5>{{ Auth::user()->name }}</h5>
                     </div>
-                    <div class="col-md-6 form-group mt-3 mt-md-0">
-                        <input type="email" class="form-control" id="email" value="{{ Auth::user()->email }}"
-                            required>
+                    <div class="col-md-4">
+                        <label for="">Email</label>
+                        <h5>{{ Auth::user()->email }}</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="">Layanan</label>
+                        <h5>{{ $layanan }}</h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="">Tanggal</label>
+                        <h5>{{ $tanggal }}</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="">Waktu</label>
+                        <h5>{{ $waktu }}</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="">Estimasi</label>
+                        <h5>{{ ($layanan = 'Service Mesin') ? 'Rp 250.000' : 'Rp 500.000' }}</h5>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-md-4 form-group">
-                        <input type="text" class="form-control" name="service" value="{{ $layanan }}" required>
+                        <label for="">Whatsapp/HP</label>
+                        <input type="text" class="form-control" name="phone" placeholder="081xxxxxx" required autofocus>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label for="">Brand Mobil</label>
+                        <input type="text" class="form-control" name="brand" placeholder="Cth: Toyota" required>
                     </div>
                     <div class="col-md-4 form-group mt-3 mt-md-0">
-                        <input type="text" class="form-control" name="date" value="{{ $tanggal }}"
-                            required>
-                    </div>
-                    <div class="col-md-4 form-group mt-3 mt-md-0">
-                        <input type="text" class="form-control" name="time" value="{{ $waktu }}"
-                            required>
+                        <label for="">Tipe Mobil</label>
+                        <input type="text" class="form-control" name="type" placeholder="Cth: Avanza" required>
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-md-4 form-group">
-                        <input type="text" class="form-control" name="brand" placeholder="Brand Mobil Cth: Toyota" required>
+                        <label for="">Plat No</label>
+                        <input type="text" class="form-control" name="plate_no" placeholder="DK xxxx XY" required>
                     </div>
                     <div class="col-md-4 form-group mt-3 mt-md-0">
-                        <input type="text" class="form-control" name="type" placeholder="Type Mobil Mobil Cth: Avanza"
+                        <label for="">Warna Mobil</label>
+                        <input type="text" class="form-control" name="color" placeholder="Cth: Biru"
                             required>
                     </div>
-                    <div class="col-md-4 form-group mt-3 mt-md-0">
-                        <input type="text" class="form-control" name="color" placeholder="Warna Mobil"
-                            required>
+                    <div class="col-md-4 form-group">
+                        <label for="">Tahun Mobil</label>
+                        <input type="text" class="form-control" name="year" placeholder="Cth: 2022" required>
                     </div>
                 </div>
 
                 <div class="row mt-3">
-                    <div class="col-md-4 form-group">
-                        <input type="text" class="form-control" name="year" placeholder="Tahun Mobil" required>
-                    </div>
                     <div class="col-md-4 form-group mt-3 mt-md-0">
+                        <label for="">Transmisi</label>
                         <select name="transmition" class="form-control" required>
-                            <option value="">Pilih Transmisi</option>
+                            <option value="">Pilih</option>
                             <option value="AT">Automatic</option>
                             <option value="MT">Manual</option>
                         </select>
                     </div>
                     <div class="col-md-4 form-group mt-3 mt-md-0">
+                        <label for="">Mau Dijemput?</label>
                         <select name="facility" class="form-control" required>
-                            <option value="">Mau Dijemput?</option>
+                            <option value="">Pilih</option>
                             <option value="datang">Tidak</option>
                             <option value="jemput">Ya</option>
                         </select>
                     </div>
-                </div>
-
-                <div class="row mt-3">
-                    <div class="col-md-4 form-group">
-                        <input type="text" class="form-control" name="plate_no" placeholder="Plate Nomor Kendaraan" required>
-                    </div>
+                    
                     <div class="col-md-4 form-group mt-3 mt-md-0">
-                        <input type="text" class="form-control" value="{{ ($layanan = 'Service Mesin') ? 'Rp 250.000' : 'Rp 500.000' }}"
-                            required>
-                        <input type="hidden" name="estimation" value="{{ ($layanan = 'Service Mesin') ? 250000 : 500000 }}">
-                    </div>
-                    <div class="col-md-4 form-group mt-3 mt-md-0">
-                        <input type="text" class="form-control" name="complaint" placeholder="Keluhan">
+                        <label for="">Keluhan</label>
+                        <input type="text" class="form-control" name="complaint" placeholder="Ada keluhan apa aja? sini curhat">
                     </div>
                 </div>
-
                 
                 <div class="text-center"><button type="submit" class="btn-booking">Booking Sekarang</button></div>
             </form>

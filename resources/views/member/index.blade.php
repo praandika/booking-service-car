@@ -93,10 +93,10 @@
                     <th scope="row">{{ $no++ }}</th>
                     <td>{{ Carbon\Carbon::parse($o->date)->translatedFormat('d F Y') }} | {{ $o->time }}</td>
                     <td>{{ $o->service }}</td>
-                    <td>{{ $o->brand }} {{ $o->type }} | {{ $o->color }} | {{ $o->tahun }} | {{ $o->transmition }}</td>
+                    <td>{{ $o->brand }} {{ $o->type }} | {{ $o->color }} | {{ $o->year }} | {{ $o->transmition }}</td>
                     <td>{{ $o->plate_no }}</td>
                     <td>{{ $o->frame_no }}</td>
-                    <td>{{ $o->status }}</td>
+                    <td><span class="{{ ($o->status == 'tertunda') ? 'label-pending' : (($o->status == 'dikerjakan') ? 'label-progress' : 'label-success')  }}">{{ ucwords($o->status) }}</span></td>
                     <td>
                         <a href="" class="btn btn-success"> <i class="typcn typcn-arrow-sync"></i> Jadwal Ulang</a>
                     </td>

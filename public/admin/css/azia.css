@@ -161,6 +161,32 @@ body {
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important; }
 
+/* CUSTOM CSS */
+span.label-pending{
+  background-color: #b21f2d;
+  color: #ffffff;
+  padding: 5px;
+  font-size: 10px;
+  margin-top: 10px;
+}
+
+span.label-progress{
+  background-color: #b07618;
+  color: #ffffff;
+  padding: 5px;
+  font-size: 10px;
+  margin-top: 10px;
+}
+
+span.label-success{
+  background-color: #1f24b2;
+  color: #ffffff;
+  padding: 5px;
+  font-size: 10px;
+  margin-top: 10px;
+}
+/* END CUSTOM CSS */
+
 hr {
   box-sizing: content-box;
   height: 0;

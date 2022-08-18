@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -72,6 +73,12 @@ class HomeController extends Controller
         $data->created_at = Carbon::now('GMT+8')->format('Y-m-d H:i:s');
         $data->save();
 
+        User::where('id',$request->user_id)
+        ->update([
+            'phone' => $request->phone,
+        ]);
+
+        toast('Booking sukses','success');
         return redirect()->route('member');
     }
     /** END PROSES BOOKING */

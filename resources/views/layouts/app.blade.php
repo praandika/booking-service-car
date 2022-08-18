@@ -214,6 +214,10 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    <!-- SweetAlert -->
+    @include('sweetalert::alert')
+    
     @stack('after-script')
 </body>
 
