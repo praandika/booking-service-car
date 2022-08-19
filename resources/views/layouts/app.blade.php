@@ -93,8 +93,8 @@
 
                         <ul>
                             <li>
-                                <a class="dropdown-item" href="{{ route('member') }}">
-                                    Member Area
+                                <a class="dropdown-item" href="{{ Auth::user()->access == 'customer' ? route('member') : route('admin.dashboard') }}">
+                                    {{ Auth::user()->access == 'customer' ? 'Member Area' : 'Dashboard'}}
                                 </a>
                             </li>
 

@@ -75,6 +75,17 @@
                 <h5>{{ $o->complaint }}</h5>
             </div>
         </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+                <label for="">Tanggal</label>
+                <h5>{{ Carbon\Carbon::parse($date)->translatedFormat('d F Y') }}</h5>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+                <label for="">Waktu</label>
+                <h5>{{ $o->time }}</h5>
+            </div>
+        </div>
     </div>
 
     <div class="kolom">
