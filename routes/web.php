@@ -41,6 +41,8 @@ Route::get('admin/dashboard',[DashboardController::class, 'dashboard'])->name('a
 Route::get('admin/booking-list',[DashboardController::class, 'bookingList'])->name('admin.booking-list');
 Route::get('admin/work-order-form/{id}',[DashboardController::class, 'workOrderForm'])->name('admin.work-order-form');
 Route::get('admin/work-order',[DashboardController::class, 'workOrder'])->name('admin.work-order');
+Route::post('admin/work-order-store/{id}',[DashboardController::class, 'workOrderStore'])->name('admin.work-order-store');
+Route::get('admin/work-order-finishing/{id}',[DashboardController::class, 'workOrderfinishing'])->name('admin.work-order-finishing');
 Route::get('admin/work-finished',[DashboardController::class, 'workFinished'])->name('admin.work-finished');
 Route::get('admin/employee',[DashboardController::class, 'employee'])->name('admin.employee');
 Route::post('admin/employee-store',[DashboardController::class, 'employeeStore'])->name('admin.employee-store');

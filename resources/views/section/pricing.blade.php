@@ -21,7 +21,7 @@
                         <li>Tune Up</li>
                     </ul>
                     <div class="btn-wrap">
-                        <a href="{{ url('member/booking-tanggal/sevice-mesin') }}" class="btn-buy">Booking</a>
+                        <a href="{{ url('member/booking-tanggal/service-mesin') }}" class="btn-buy">Booking</a>
                     </div>
                 </div>
             </div>

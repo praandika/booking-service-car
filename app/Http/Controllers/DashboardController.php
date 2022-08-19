@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Employee;
+use App\Models\WorkOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -78,6 +79,7 @@ class DashboardController extends Controller
             'date' => $request->date,
             'time' => $request->time,
             'reschedule' => '1',
+            'updated_at' => Carbon::now('GMT+8')->format('Y-m-d H:i:s'),
         ]);
         toast('Jadwal Ulang sukses','success');
         if (Auth::user()->access = 'customer') {
@@ -157,20 +159,59 @@ class DashboardController extends Controller
     public function workOrderForm($id){
         $date = Carbon::now('GMT+8');
         $data = Booking::where('id',$id)->get();
-        $emp = Employee::orderBy('name','asc')->get();
+        $emp = Employee::where('position','Teknisi')
+        ->orderBy('name','asc')->get();
 
         return view('admin.work-order-form', compact('date','data','emp'));
+    }
+
+    public function workOrderStore(Request $request, $id){
+        Booking::where('id',$id)
+        ->update([
+            'frame_no' => $request->frame_no,
+            'status' => 'dikerjakan',
+            'updated_at' => Carbon::now('GMT+8')->format('Y-m-d H:i:s'),
+        ]);
+
+        $wo = New WorkOrder;
+        $wo->booking_id = $id;
+        $wo->employee_id = $request->employee;
+        $wo->created_at = Carbon::now('GMT+8')->format('Y-m-d H:i:s');
+        $wo->save();
+
+        toast('Yes!, Teknisi sedang mengerjakan service-nya','success');
+        return redirect()->route('admin.work-order');
     }
     
     public function workOrder(){
         $date = Carbon::now('GMT+8');
-        $data = Booking::where([
-            ['status','dikerjakan'],
-        ])
-        ->orderBy('date','desc')
+        $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
+        ->join('employees','work_orders.employee_id','=','employees.id')
+        ->where('bookings.status','dikerjakan')
         ->get();
 
         return view('admin.work-order', compact('date','data'));
+    }
+
+    public function workOrderFinishing($id){
+        Booking::where('id',$id)
+        ->update([
+            'status' => 'selesai',
+            'updated_at' => Carbon::now('GMT+8')->format('Y-m-d H:i:s'),
+        ]);
+
+        toast('Yay! Perngerjaan Selesai', 'success');
+        return redirect()->route('admin.work-finished');
+    }
+
+    public function workFinished(){
+        $date = Carbon::now('GMT+8');
+        $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
+        ->join('employees','work_orders.employee_id','=','employees.id')
+        ->where('bookings.status','selesai')
+        ->get();
+
+        return view('admin.work-finished', compact('date','data'));
     }
 
     public function employee(){
@@ -203,6 +244,7 @@ class DashboardController extends Controller
             'name' => $request->name,
             'phone' => $request->phone,
             'position' => $request->position,
+            'updated_at' => Carbon::now('GMT+8')->format('Y-m-d H:i:s')
         ]);
 
         toast('Yay! berhasil ubah karyawan baru', 'success');

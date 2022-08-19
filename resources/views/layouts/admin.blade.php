@@ -23,6 +23,38 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
+    <style>
+        .btn-aksi-success{
+            color: #0b7a1e;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .btn-aksi-primary{
+            color: #0b147a;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .btn-aksi-danger{
+            color: #7a0b0b;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .btn-aksi-warning{
+            color: #7a6c0b;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .btn-aksi-secondary{
+            color: #383835;
+            font-weight: bold;
+            font-size: 20px;
+        }
+    </style>
+
     @stack('after-css')
 </head>
 

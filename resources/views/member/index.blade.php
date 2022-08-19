@@ -98,7 +98,11 @@
                     <td>{{ $o->frame_no }}</td>
                     <td><span class="{{ ($o->status == 'tertunda') ? 'label-pending' : (($o->status == 'dikerjakan') ? 'label-progress' : 'label-success')  }}">{{ ucwords($o->status) }}</span></td>
                     <td>
-                        <a href="{{ url('member/booking-reschedule',$o->id) }}" class="btn btn-success"> <i class="typcn typcn-arrow-sync"></i> Jadwal Ulang</a>
+                        @if($o->status == 'tertunda')
+                        <a href="{{ url('member/booking-reschedule',$o->id) }}" class="btn-aksi-primary"> <i class="typcn typcn-arrow-sync"></i> Jadwal Ulang</a>
+                        @else
+                        <button class="btn-aksi-secondary" disabled><i class="typcn typcn-arrow-sync"></i> {{ ucwords($o->status) }}</button>
+                        @endif
                     </td>
                 </tr>
                 @empty

@@ -33,8 +33,8 @@
                     <td>{{ $o->frame_no }}</td>
                     <td><span class="{{ ($o->status == 'tertunda') ? 'label-pending' : (($o->status == 'dikerjakan') ? 'label-progress' : 'label-success')  }}">{{ ucwords($o->status) }}</span></td>
                     <td>
-                        <a href="{{ url('member/booking-reschedule',$o->id) }}" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Jadwal Ulang"> <i class="typcn typcn-arrow-sync"></i></a>
-                        <a href="{{ url('admin/work-order-form',$o->id) }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Kerjakan"> <i class="typcn typcn-spanner"></i></a>
+                        <a href="{{ url('member/booking-reschedule',$o->id) }}" class="btn-aksi-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Jadwal Ulang"> <i class="typcn typcn-arrow-sync"></i></a>
+                        <a href="{{ url('admin/work-order-form',$o->id) }}" class="btn-aksi-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Kerjakan"> <i class="typcn typcn-spanner"></i></a>
                     </td>
                 </tr>
                 @empty

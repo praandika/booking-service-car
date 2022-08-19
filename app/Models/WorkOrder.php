@@ -16,10 +16,10 @@ class WorkOrder extends Model
     ];
 
     public function booking(){
-        return $this->belongsToMany(Booking::class);
+        return $this->belongsTo(Booking::class);
     }
 
     public function employee(){
-        return $this->belongsToMany(Employee::class);
+        return $this->belongsTo(Employee::class);
     }
 }

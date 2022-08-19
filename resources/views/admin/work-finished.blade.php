@@ -1,10 +1,10 @@
 @extends('layouts.admin')
-@section('title','Sedang Dikerjakan')
-@section('dash-title','Sedang Dikerjakan')
+@section('title','Selesai')
+@section('dash-title','Selesai')
 
 @section('content')
 <div class="row" style="margin-top: 20px;">
-    <h4 class="dekor-judul"><i class="typcn typcn-info-large"></i> Service Dikerjakan</h4>
+    <h4 class="dekor-judul"><i class="typcn typcn-info-large"></i> Service Selesai</h4>
     <div class="table-responsive">
         <table class="table table-hover table-bordered mg-b-0" id="TableData">
             <thead>
@@ -35,7 +35,8 @@
                     <td>{{ $o->booking->frame_no }}</td>
                     <td><span class="{{ ($o->status == 'tertunda') ? 'label-pending' : (($o->status == 'dikerjakan') ? 'label-progress' : 'label-success')  }}">{{ ucwords($o->booking->status) }}</span></td>
                     <td>
-                        <a href="{{ route('admin.work-order-finishing',$o->booking->id) }}" class="btn-aksi-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Selesai"> <i class="typcn typcn-tick"></i></a>
+                        <a href="" class="btn-aksi-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Kirim Pesan"> <i class="typcn typcn-location-arrow-outline"></i></a>
+                        <a href="" class="btn-aksi-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Nota"> <i class="typcn typcn-printer"></i></a>
                     </td>
                 </tr>
                 @empty

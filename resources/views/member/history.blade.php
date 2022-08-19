@@ -26,7 +26,7 @@
                 <td>{{ $o->brand }} {{ $o->type }} | {{ $o->color }} | {{ $o->tahun }} | {{ $o->transmition }}</td>
                 <td>{{ $o->plate_no }}</td>
                 <td>{{ $o->frame_no }}</td>
-                <td>{{ $o->status }}</td>
+                <td><span class="{{ ($o->status == 'tertunda') ? 'label-pending' : (($o->status == 'dikerjakan') ? 'label-progress' : 'label-success')  }}">{{ ucwords($o->status) }}</span></td>
             </tr>
             @empty
             <tr>
