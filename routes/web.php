@@ -38,12 +38,11 @@ Route::post('member/booking-update/{id}', [DashboardController::class, 'updateBo
 
 /** Admin Route */
 Route::get('admin/dashboard',[DashboardController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('admin/booking-list',[DashboardController::class, 'bookingList'])->name('admin.booking-list');
 Route::get('admin/work-order-form/{id}',[DashboardController::class, 'workOrderForm'])->name('admin.work-order-form');
 Route::get('admin/work-order',[DashboardController::class, 'workOrder'])->name('admin.work-order');
 Route::get('admin/work-finished',[DashboardController::class, 'workFinished'])->name('admin.work-finished');
 Route::get('admin/employee',[DashboardController::class, 'employee'])->name('admin.employee');
-Route::get('admin/employee-create',[DashboardController::class, 'employeeCreate'])->name('admin.employee-create');
-Route::get('admin/employee-show',[DashboardController::class, 'employeeShow'])->name('admin.employee-show');
-Route::get('admin/employee-edit',[DashboardController::class, 'employeeEdit'])->name('admin.employee-edit');
-Route::get('admin/employee-update',[DashboardController::class, 'employeeUpdate'])->name('admin.employee-update');
+Route::post('admin/employee-store',[DashboardController::class, 'employeeStore'])->name('admin.employee-store');
+Route::post('admin/employee-update/{id}',[DashboardController::class, 'employeeUpdate'])->name('admin.employee-update');
 /** END Admin Route */

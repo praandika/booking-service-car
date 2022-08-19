@@ -8,8 +8,8 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Service</th>
                 <th>Tanggal / Waktu</th>
+                <th>Service</th>
                 <th>Mobil</th>
                 <th>Plat No</th>
                 <th>No. Rangka</th>

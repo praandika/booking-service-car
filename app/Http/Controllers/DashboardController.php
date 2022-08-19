@@ -146,6 +146,14 @@ class DashboardController extends Controller
         return view('admin.index', compact('date','data','serviceCount','pelanggan','svcMesin','bodyRepair','reschedule','tertunda','dikerjakan','selesai'));
     }
 
+    public function bookingList(){
+        $date = Carbon::now('GMT+8');
+        $data = Booking::where('status','tertunda')
+        ->orderBy('date','desc')->get();
+
+        return view('admin.booking-list', compact('date','data'));
+    }
+
     public function workOrderForm($id){
         $date = Carbon::now('GMT+8');
         $data = Booking::where('id',$id)->get();
@@ -163,6 +171,42 @@ class DashboardController extends Controller
         ->get();
 
         return view('admin.work-order', compact('date','data'));
+    }
+
+    public function employee(){
+        $date = Carbon::now('GMT+8');
+        $data = Employee::orderBy('name','asc')->get();
+        return view('admin.employee', compact('date','data'));
+    }
+
+    public function employeeStore(Request $request){
+        $data = New Employee;
+        $data->name = $request->name;
+        $data->phone = $request->phone;
+        $data->position = $request->position;
+        $data->save();
+
+        toast('Yay! berhasil tambah karyawan baru', 'success');
+        return redirect()->route('admin.employee');
+    }
+
+    public function employeeEdit($id){
+        $date = Carbon::now('GMT+8');
+        $data = Employee::where('id',$id)->get();
+        
+        return view('admin.employee-edit', compact('data','date'));
+    }
+
+    public function employeeUpdate(Request $request, $id){
+        Employee::where('id',$id)
+        ->update([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'position' => $request->position,
+        ]);
+
+        toast('Yay! berhasil ubah karyawan baru', 'success');
+        return redirect()->route('admin.employee');
     }
     /** END Admin */
 }

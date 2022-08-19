@@ -19,10 +19,6 @@
             box-shadow: none;
             border-color: #cc1616;
         }
-
-        .active{
-            background-color: #cc1616;
-        }
     </style>
 @endpush
 

@@ -1,9 +1,14 @@
 <ul class="nav">
     <li class="nav-item {{ Route::is('member') || Route::is('admin.dashboard') ? 'active' : '' }}">
-        <a href="{{ (Auth::user()->access == 'customer') ? route('member') : route('admin.dashboard') }}" class="nav-link"><i class="typcn typcn-chart-area-outline"></i>
+        <a href="{{ (Auth::user()->access == 'customer') ? route('member') : route('admin.dashboard') }}"
+            class="nav-link"><i class="typcn typcn-chart-area-outline"></i>
             Dashboard</a>
     </li>
     @if(Auth::user()->access == 'admin')
+    <li class="nav-item {{ Route::is('admin.booking-list') ? 'active' : '' }}">
+        <a href="{{ route('admin.booking-list') }}" class="nav-link"><i class="typcn typcn-th-list"></i>
+            Tertunda</a>
+    </li>
     <li class="nav-item {{ Route::is('admin.work-order') ? 'active' : '' }}">
         <a href="{{ route('admin.work-order') }}" class="nav-link"><i class="typcn typcn-spanner"></i>
             Dikerjakan</a>
