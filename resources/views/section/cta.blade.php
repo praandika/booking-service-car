@@ -5,7 +5,7 @@
         <div class="text-center">
             <h3>Book A Service</h3>
             <p> Melayani servis mesin dan memperbaiki body kendaraan Anda memberikan pelayanan maksimal dari teknisi handal kami. <br> Menerima layanan antar - jemput mobil Anda.</p>
-            <a class="cta-btn" href="#">Booking Sekarang</a>
+            <a class="cta-btn" href="{{ route('member.booking') }}">Booking Sekarang</a>
         </div>
 
     </div>

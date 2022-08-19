@@ -43,6 +43,7 @@
                         <input type="hidden" value="09:00" name="waktu">
                         <input type="hidden" value="{{ $layanan }}" name="layanan">
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
+                        <input type="hidden" value="{{ $jemput }}" name="jemput">
                         <button class="btn-booking">Booking</button>
                     </form>
                 </div>
@@ -57,6 +58,7 @@
                         <input type="hidden" value="10:00" name="waktu">
                         <input type="hidden" value="{{ $layanan }}" name="layanan">
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
+                        <input type="hidden" value="{{ $jemput }}" name="jemput">
                         <button class="btn-booking">Booking</button>
                     </form>
                 </div>
@@ -71,6 +73,7 @@
                         <input type="hidden" value="11:00" name="waktu">
                         <input type="hidden" value="{{ $layanan }}" name="layanan">
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
+                        <input type="hidden" value="{{ $jemput }}" name="jemput">
                         <button class="btn-booking">Booking</button>
                     </form>
                 </div>
@@ -87,6 +90,7 @@
                         <input type="hidden" value="13:00" name="waktu">
                         <input type="hidden" value="{{ $layanan }}" name="layanan">
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
+                        <input type="hidden" value="{{ $jemput }}" name="jemput">
                         <button class="btn-booking">Booking</button>
                     </form>
                 </div>
@@ -101,6 +105,7 @@
                         <input type="hidden" value="14:00" name="waktu">
                         <input type="hidden" value="{{ $layanan }}" name="layanan">
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
+                        <input type="hidden" value="{{ $jemput }}" name="jemput">
                         <button class="btn-booking">Booking</button>
                     </form>
                 </div>
@@ -115,6 +120,7 @@
                         <input type="hidden" value="15:00" name="waktu">
                         <input type="hidden" value="{{ $layanan }}" name="layanan">
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
+                        <input type="hidden" value="{{ $jemput }}" name="jemput">
                         <button class="btn-booking">Booking</button>
                     </form>
                 </div>

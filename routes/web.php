@@ -27,13 +27,13 @@ Route::get('auth/google/callback', [GoogleController::class, 'googleCallback'])-
 Route::get('member', [DashboardController::class, 'member'])->name('member');
 Route::get('member/booking-list', [DashboardController::class, 'memberBookingList'])->name('member.booking-list');
 Route::get('member/history', [DashboardController::class, 'memberHistory'])->name('member.history');
-Route::get('member/booking', [HomeController::class, 'booking'])->name('member.booking')->middleware('auth');
-Route::get('member/booking-tanggal', [HomeController::class, 'tanggal'])->name('member.goto-tanggal')->middleware('auth');
+Route::get('member/booking/{jemput?}', [HomeController::class, 'booking'])->name('member.booking')->middleware('auth');
+Route::get('member/booking-tanggal/{service?}', [HomeController::class, 'tanggal'])->name('member.goto-tanggal')->middleware('auth');
 Route::get('member/booking-waktu', [HomeController::class, 'waktu'])->name('member.goto-waktu')->middleware('auth');
 Route::get('member/booking-form', [HomeController::class, 'form'])->name('member.goto-form')->middleware('auth');
 Route::post('member/booking-store', [HomeController::class, 'storeBooking'])->name('member.store-booking')->middleware('auth');
 Route::get('member/booking-reschedule/{id}', [DashboardController::class, 'reschedule']);
-Route::put('member/booking-update', [DashboardController::class, 'updateBooking'])->name('member.update-booking');
+Route::post('member/booking-update/{id}', [DashboardController::class, 'updateBooking'])->name('member.update-booking');
 /** END Member Route */
 
 /** Admin Route */

@@ -42,6 +42,9 @@
                     <p>Teknisi handal siap untuk memperbaiki segala masalah mesin mobil Anda</p>
                     <form action="{{ route('member.goto-tanggal') }}" method="GET">
                         @csrf
+                        @if($jemput == 1)
+                        <input type="hidden" name="jemput" value="1">
+                        @endif
                         <input type="hidden" value="Service Mesin" name="layanan">
                         <button class="btn-booking">Booking</button>
                     </form>
@@ -56,6 +59,9 @@
                     <p>Memperbaiki body mobil Anda dari lecet ringan hingga berat</p>
                     <form action="{{ route('member.goto-tanggal') }}" method="GET">
                         @csrf
+                        @if($jemput == 1)
+                        <input type="hidden" name="jemput" value="1">
+                        @endif
                         <input type="hidden" value="Body Repair" name="layanan">
                         <button class="btn-booking">Booking</button>
                     </form>

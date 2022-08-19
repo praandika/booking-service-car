@@ -30,29 +30,45 @@ class HomeController extends Controller
     }
 
     /** PROSES BOOKING */
-    public function booking(){
-        return view('member.booking');
+    public function booking($jemput = null){
+        return view('member.booking', compact('jemput'));
     }
 
-    public function tanggal(Request $request){
-        $layanan = $request->layanan;
-        return view('member.tanggal', compact('layanan'));
+    public function tanggal(Request $request, $service = null){
+        if ($service == null) {
+            $layanan = $request->layanan;
+        } else {
+            $layanan = ($service == 'service-mesin') ? 'Service Mesin' : 'Body Repair' ;
+        }
+        $jemput = $request->jemput;
+        return view('member.tanggal', compact('layanan','jemput'));
     }
 
     public function waktu(Request $request){
         $layanan = $request->layanan;
         $tanggal = $request->tanggal;
-        return view('member.waktu', compact('tanggal','layanan'));
+        $jemput = $request->jemput;
+        return view('member.waktu', compact('tanggal','layanan','jemput'));
     }
 
     public function form(Request $request){
         $layanan = $request->layanan;
         $tanggal = $request->tanggal;
         $waktu = $request->waktu;
-        return view('member.form', compact('tanggal','layanan','waktu'));
+        $jemput = $request->jemput;
+
+        // dd($layanan, $tanggal, $waktu, $jemput);
+        
+        return view('member.form', compact('tanggal','layanan','waktu','jemput'));
     }
 
     public function storeBooking(Request $request){
+        if ($request->facility == 'jemput') {
+            $estimation = $request->estimation + 50000;
+        } else {
+            $estimation = $request->estimation;
+        }
+        
         $data = New Booking;
         $data->user_id = $request->user_id;
         $data->frame_no = $request->frame_no;
@@ -67,7 +83,7 @@ class HomeController extends Controller
         $data->transmition = $request->transmition;
         $data->date = $request->date;
         $data->time = $request->time;
-        $data->estimation = $request->estimation;
+        $data->estimation = $estimation;
         $data->status = 'tertunda';
         $data->reschedule = '0';
         $data->created_at = Carbon::now('GMT+8')->format('Y-m-d H:i:s');

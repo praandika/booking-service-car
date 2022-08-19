@@ -20,6 +20,7 @@
             <h3>Pilih Tanggal</h3>
             <form action="{{ route('member.goto-waktu') }}" method="GET">
                 @csrf
+                <input type="hidden" value="{{ $jemput }}" name="jemput">
                 <input type="hidden" value="{{ $layanan }}" name="layanan">
                 <input type="date" name="tanggal" id="inputdate" required> <br>
                 <button class="cta-btn" style="background: transparent;">Booking</button>

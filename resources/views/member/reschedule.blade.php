@@ -19,56 +19,60 @@
             box-shadow: none;
             border-color: #cc1616;
         }
+
+        .active{
+            background-color: #cc1616;
+        }
     </style>
 @endpush
 
 @section('content')
-<form action="{{ route('member.update-booking', $data->id) }}" method="post">
+@foreach($data as $o)
+<form action="{{ route('member.update-booking',$o->id) }}" method="post">
     @csrf
-    @method('PUT')
     <div class="kolom">
         <div class="row">
             <div class="col-md-4">
                 <label for="">Nama</label>
-                <h5>{{ $data->user->name }}</h5>
+                <h5>{{ $o->user->name }}</h5>
             </div>
             <div class="col-md-4">
                 <label for="">Email</label>
-                <h5>{{ $data->user->email }}</h5>
+                <h5>{{ $o->user->email }}</h5>
             </div>
             <div class="col-md-4 form-group">
                 <label for="">Whatsapp/HP</label>
-                <h5>{{ $data->user->phone }}</h5>
+                <h5>{{ $o->user->phone }}</h5>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-4">
                 <label for="">Layanan</label>
-                <h5>{{ $data->service }}</h5>
+                <h5>{{ $o->service }}</h5>
             </div>
             <div class="col-md-4">
                 <label for="">Estimasi</label>
-                <h5>{{ $data->estimation }}</h5>
+                <h5>{{ $o->estimation }}</h5>
             </div>
             <div class="col-md-4 form-group">
                 <label for="">Mobil</label>
-                <h5>{{ $data->brand }} | {{ $data->type }} | {{ $data->color }} | {{ $data->year }} | {{ $data->transmition }}</h5>
+                <h5>{{ $o->brand }} | {{ $o->type }} | {{ $o->color }} | {{ $o->year }} | {{ $o->transmition }}</h5>
             </div>
         </div>
 
         <div class="row mt-3">
             <div class="col-md-4 form-group mt-3 mt-md-0">
                 <label for="">Plat No</label>
-                <h5>{{ $data->plate_no }}</h5>
+                <h5>{{ $o->plate_no }}</h5>
             </div>
             <div class="col-md-4 form-group mt-3 mt-md-0">
                 <label for="">Pick Up</label>
-                <h5>{{ ucwords($data->facility) }}</h5>
+                <h5>{{ ucwords($o->facility) }}</h5>
             </div>
             <div class="col-md-4 form-group mt-3 mt-md-0">
                 <label for="">Keluhan</label>
-                <h5>{{ $data->complaint }}</h5>
+                <h5>{{ $o->complaint }}</h5>
             </div>
         </div>
     </div>
@@ -77,9 +81,9 @@
         <div class="row">
             <div class="col-md-3 form-group mt-3 mt-md-0">
                 <label for="">Pilih Tanggal</label>
-                <input type="date" name="date" id="inputdate" class="form-control" value="{{ $data->date }}">
+                <input type="date" name="date" id="inputdate" class="form-control" value="{{ $o->date }}">
             </div>
-
+@endforeach
             <div class="col-md-6 form-group mt-3 mt-md-0" style="text-align: center;">
                 <label for="">Pilih Waktu</label>
                 <br>
