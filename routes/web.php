@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PDFController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -51,3 +52,7 @@ Route::get('admin/booking-all',[DashboardController::class, 'showBookingAll'])->
 Route::get('admin/booking-service',[DashboardController::class, 'showBookingService'])->name('admin.booking-service');
 Route::get('admin/booking-repair',[DashboardController::class, 'showBookingRepair'])->name('admin.booking-repair');
 /** END Admin Route */
+
+/** PRINT */
+Route::get('print/{id}',[PDFController::class, 'printNota'])->name('admin.print-nota');
+/** END PRINT */

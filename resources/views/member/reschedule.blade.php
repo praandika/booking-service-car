@@ -49,7 +49,7 @@
             </div>
             <div class="col-md-4">
                 <label for="">Estimasi</label>
-                <h5>{{ $o->estimation }}</h5>
+                <h5>Rp {{ number_format($o->estimation, 0, ',', '.')}}</h5>
             </div>
             <div class="col-md-4 form-group">
                 <label for="">Mobil</label>
