@@ -124,6 +124,9 @@ class DashboardController extends Controller
         ])
         ->count();
 
+        $bookingAll = Booking::where('status','!=','selesai')
+        ->count();
+
         $reschedule = Booking::where([
             ['status','!=','selesai'],
             ['reschedule','1'],
@@ -145,7 +148,7 @@ class DashboardController extends Controller
         ])
         ->count();
 
-        return view('admin.index', compact('date','data','serviceCount','pelanggan','svcMesin','bodyRepair','reschedule','tertunda','dikerjakan','selesai'));
+        return view('admin.index', compact('date','data','serviceCount','pelanggan','svcMesin','bodyRepair','reschedule','tertunda','dikerjakan','selesai','bookingAll'));
     }
 
     public function bookingList(){
@@ -168,7 +171,7 @@ class DashboardController extends Controller
     public function workOrderStore(Request $request, $id){
         Booking::where('id',$id)
         ->update([
-            'frame_no' => $request->frame_no,
+            'frame_no' => strtoupper($request->frame_no),
             'status' => 'dikerjakan',
             'updated_at' => Carbon::now('GMT+8')->format('Y-m-d H:i:s'),
         ]);
@@ -249,6 +252,32 @@ class DashboardController extends Controller
 
         toast('Yay! berhasil ubah karyawan baru', 'success');
         return redirect()->route('admin.employee');
+    }
+
+    public function showBookingAll(){
+        $title = 'Daftar Booking';
+        $date = Carbon::now('GMT+8');
+        $data = Booking::orderBy('date','asc')->get();
+
+        return view('admin.show-booking', compact('date','data','title'));
+    }
+
+    public function showBookingService(){
+        $title = 'Daftar Service Mesin';
+        $date = Carbon::now('GMT+8');
+        $data = Booking::where('service','Service Mesin')
+        ->orderBy('date','asc')->get();
+
+        return view('admin.show-booking', compact('date','data','title'));
+    }
+
+    public function showBookingRepair(){
+        $title = 'Daftar Body Repair';
+        $date = Carbon::now('GMT+8');
+        $data = Booking::where('service','Body Repair')
+        ->orderBy('date','asc')->get();
+
+        return view('admin.show-booking', compact('date','data','title'));
     }
     /** END Admin */
 }

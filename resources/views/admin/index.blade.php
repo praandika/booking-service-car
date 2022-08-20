@@ -67,16 +67,28 @@
             <div class="card-body row row-sm">
                 <div class="col-12 d-sm-flex align-items-center">
                     <div style="margin-right: 10px;">
-                        <label style="background-color: #1f1f1f; color: #ffffff; padding: 3px; font-size: 9px; font-weight: bold;">Service Mesin</label>
-                        <center>
-                            <h4>{{ $svcMesin }}</h4>
-                        </center>
+                        <a href="{{ route('admin.booking-service') }}">
+                            <label style="background-color: #1f1f1f; color: #ffffff; padding: 3px; font-size: 9px; font-weight: bold; cursor: pointer;">Service Mesin</label>
+                            <center>
+                                <h4>{{ $svcMesin }}</h4>
+                            </center>
+                        </a>
+                    </div>
+                    <div style="margin-right: 10px;">
+                        <a href="{{ route('admin.booking-repair') }}">
+                            <label style="background-color: #b59d00; color: #000000; padding: 3px; font-size: 9px; font-weight: bold; cursor: pointer;">Body Repair</label>
+                            <center>
+                                <h4>{{ $bodyRepair }}</h4>
+                            </center>
+                        </a>
                     </div>
                     <div>
-                        <label style="background-color: #b59d00; color: #000000; padding: 3px; font-size: 9px; font-weight: bold;">Body Repair</label>
-                        <center>
-                            <h4>{{ $bodyRepair }}</h4>
-                        </center>
+                        <a href="{{ route('admin.booking-all') }}">
+                            <label style="background-color: #277BC0; color: #ffffff; padding: 3px; font-size: 9px; font-weight: bold; cursor: pointer;">Total Booking</label>
+                            <center>
+                                <h4>{{ $bookingAll }}</h4>
+                            </center>
+                        </a>
                     </div>
                 </div><!-- col -->
             </div>
@@ -115,6 +127,7 @@
             <thead>
                 <tr>
                     <th>No</th>
+                    <th>Pelanggan</th>
                     <th>Tanggal / Waktu</th>
                     <th>Service</th>
                     <th>Mobil</th>
@@ -129,6 +142,7 @@
                 @forelse($data as $o)
                 <tr>
                     <th scope="row">{{ $no++ }}</th>
+                    <th>{{ $o->user->name }} | {{ $o->user->phone }}</th>
                     <td>{{ Carbon\Carbon::parse($o->date)->translatedFormat('d F Y') }} | {{ $o->time }}</td>
                     <td>{{ $o->service }}</td>
                     <td>{{ $o->brand }} {{ $o->type }} | {{ $o->color }} | {{ $o->year }} | {{ $o->transmition }}</td>

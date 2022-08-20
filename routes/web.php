@@ -47,4 +47,7 @@ Route::get('admin/work-finished',[DashboardController::class, 'workFinished'])->
 Route::get('admin/employee',[DashboardController::class, 'employee'])->name('admin.employee');
 Route::post('admin/employee-store',[DashboardController::class, 'employeeStore'])->name('admin.employee-store');
 Route::post('admin/employee-update/{id}',[DashboardController::class, 'employeeUpdate'])->name('admin.employee-update');
+Route::get('admin/booking-all',[DashboardController::class, 'showBookingAll'])->name('admin.booking-all');
+Route::get('admin/booking-service',[DashboardController::class, 'showBookingService'])->name('admin.booking-service');
+Route::get('admin/booking-repair',[DashboardController::class, 'showBookingRepair'])->name('admin.booking-repair');
 /** END Admin Route */

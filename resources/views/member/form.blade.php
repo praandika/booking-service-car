@@ -97,11 +97,18 @@
                 <div class="row mt-3">
                     <div class="col-md-4 form-group">
                         <label for="">Whatsapp/HP</label>
-                        <input type="text" class="form-control" name="phone" placeholder="081xxxxxx" required autofocus>
+                        @if($phone == '')
+                        <div class="inputGroup" style="position: relative;">
+                            <span style="font-weight: bold; position: absolute; top: 7px; margin-left: 5px;">+62</span>
+                            <input style="text-indent: 25px;" type="number" class="form-control" name="phone" placeholder="81xxxxxx" required autofocus>
+                        </div>
+                        @else
+                            <input type="text" class="form-control" name="phone" value="{{ $phone }}" required readonly>
+                        @endif
                     </div>
                     <div class="col-md-4 form-group">
                         <label for="">Brand Mobil</label>
-                        <input type="text" class="form-control" name="brand" placeholder="Cth: Toyota" required>
+                        <input type="text" class="form-control" name="brand" placeholder="Cth: Toyota" required @if($phone) autofocus @endif>
                     </div>
                     <div class="col-md-4 form-group mt-3 mt-md-0">
                         <label for="">Tipe Mobil</label>

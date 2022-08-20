@@ -35,7 +35,7 @@
                     <td>{{ $o->booking->frame_no }}</td>
                     <td><span class="{{ ($o->status == 'tertunda') ? 'label-pending' : (($o->status == 'dikerjakan') ? 'label-progress' : 'label-success')  }}">{{ ucwords($o->booking->status) }}</span></td>
                     <td>
-                        <a href="" class="btn-aksi-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Kirim Pesan"> <i class="typcn typcn-location-arrow-outline"></i></a>
+                        <a href="https://wa.me/{{ $o->booking->user->phone }}?text=Halo%20{{ str_replace(' ', '%20', $o->booking->user->name); }}%20{{ $o->booking->service }}%20mobil%20{{ $o->booking->brand }}%20{{ $o->booking->type }}%20Anda%20sudah%20selesai%20dikerjakan" class="btn-aksi-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Kirim Pesan" target="_blank"> <i class="typcn typcn-location-arrow-outline"></i></a>
                         <a href="" class="btn-aksi-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Print Nota"> <i class="typcn typcn-printer"></i></a>
                     </td>
                 </tr>

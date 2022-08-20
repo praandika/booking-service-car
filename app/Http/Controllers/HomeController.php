@@ -6,6 +6,7 @@ use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -56,10 +57,11 @@ class HomeController extends Controller
         $tanggal = $request->tanggal;
         $waktu = $request->waktu;
         $jemput = $request->jemput;
+        $phone = Auth::user()->phone;
 
         // dd($layanan, $tanggal, $waktu, $jemput);
         
-        return view('member.form', compact('tanggal','layanan','waktu','jemput'));
+        return view('member.form', compact('tanggal','layanan','waktu','jemput','phone'));
     }
 
     public function storeBooking(Request $request){
@@ -71,13 +73,13 @@ class HomeController extends Controller
         
         $data = New Booking;
         $data->user_id = $request->user_id;
-        $data->frame_no = $request->frame_no;
+        $data->frame_no = strtoupper($request->frame_no);
         $data->service = $request->service;
-        $data->plate_no = $request->plate_no;
+        $data->plate_no = strtoupper($request->plate_no);
         $data->complaint = $request->complaint;
-        $data->brand = $request->brand;
-        $data->type = $request->type;
-        $data->color = $request->color;
+        $data->brand = ucwords($request->brand);
+        $data->type = ucwords($request->type);
+        $data->color = ucwords($request->color);
         $data->year = $request->year;
         $data->facility = $request->facility;
         $data->transmition = $request->transmition;
@@ -89,10 +91,17 @@ class HomeController extends Controller
         $data->created_at = Carbon::now('GMT+8')->format('Y-m-d H:i:s');
         $data->save();
 
-        User::where('id',$request->user_id)
-        ->update([
-            'phone' => $request->phone,
-        ]);
+        $cek = User::where('id',$request->user_id)->select('phone')->get();
+        foreach ($cek as $o) {
+            $cekPhone = $o->phone;
+        }
+        // dd($cekPhone);
+        if ($cekPhone == null) {
+            User::where('id',$request->user_id)
+            ->update([
+                'phone' => '62'.ltrim($request->phone, '0'),
+            ]);
+        }
 
         toast('Booking sukses','success');
         return redirect()->route('member');
