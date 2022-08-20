@@ -21,6 +21,10 @@
         <a href="{{ route('admin.employee') }}" class="nav-link"><i class="typcn typcn-user"></i>
             Teknisi</a>
     </li>
+    <li class="nav-item {{ Route::is('admin.report') ? 'active' : '' }}">
+        <a href="{{ route('admin.report') }}" class="nav-link"><i class="typcn typcn-document"></i>
+            Laporan</a>
+    </li>
     @endif
     @if(Auth::user()->access == 'customer')
     <li class="nav-item {{ Route::is('member.booking-list') ? 'active' : '' }}">

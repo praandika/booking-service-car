@@ -279,5 +279,34 @@ class DashboardController extends Controller
 
         return view('admin.show-booking', compact('date','data','title'));
     }
+
+    public function showReport(){
+        $date = Carbon::now('GMT+8');
+        return view('admin.report', compact('date'));
+    }
+
+    public function reportSearch(Request $request){
+        $date = Carbon::now('GMT+8');
+        if (($request->status == "" ) && ($request->service == "")) {
+            $data = Booking::whereBetween('date',[$request->start, $request->end])->get();
+        } elseif($request->status == "") {
+            $data = Booking::whereBetween('date',[$request->start, $request->end])
+            ->where('service',$request->service)
+            ->get();
+        } elseif($request->service == "") {
+            $data = Booking::whereBetween('date',[$request->start, $request->end])
+            ->where('status',$request->status)
+            ->get();
+        } else {
+            $data = Booking::whereBetween('date',[$request->start, $request->end])
+            ->where([
+                ['status',$request->status],
+                ['service',$request->service],
+            ])
+            ->get();
+        }
+        
+        return view('admin.report-search', compact('date','data'));
+    }
     /** END Admin */
 }
