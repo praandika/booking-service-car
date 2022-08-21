@@ -88,7 +88,7 @@
                                 <img src="{{ asset('img/logo.png') }}" alt="">
                             </div><!-- az-img-user -->
                             <h6>{{ Auth::user()->name }}</h6>
-                            <span>Motohid Member</span>
+                            <span>{{ Auth::user()->access == 'admin' ? 'Motohid Admin' : 'Motohid Member'}}</span>
                         </div><!-- az-header-profile -->
                         <a href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="dropdown-item"><i class="typcn typcn-power-outline"></i> Keluar</a>
