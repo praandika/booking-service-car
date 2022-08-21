@@ -18,7 +18,7 @@
         <div class="col-md-2 mt-3 mt-md-0">
             <label for="">Tipe Service</label>
             <select name="service" id="" class="form-control">
-                <option value="">Pilih Tipe Service</option>
+                <option value="semua">All</option>
                 <option value="Service Mesin">Service Mesin</option>
                 <option value="Body Repair">Body Repair</option>
             </select>
@@ -26,8 +26,7 @@
         <div class="col-md-2 mt-3 mt-md-0" style="position: relative;">
             <label for="">Status</label>
             <select name="status" id="" class="form-control">
-                <option value="">Pilih Status</option>
-                <option value="tertunda">Tertunda</option>
+                <option value="semua">All</option>
                 <option value="dikerjakan">Dikerjakan</option>
                 <option value="selesai">Selesai</option>
             </select>

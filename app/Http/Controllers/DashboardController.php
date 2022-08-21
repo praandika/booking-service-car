@@ -286,17 +286,25 @@ class DashboardController extends Controller
     }
 
     public function reportSearch(Request $request){
+        $start = $request->start;
+        $end = $request->end;
+        $status = $request->status;
+        $service = $request->service;
         $date = Carbon::now('GMT+8');
-        if (($request->status == "" ) && ($request->service == "")) {
+        if (($request->status == "semua" ) && ($request->service == "semua")) {
             $data = Booking::whereBetween('date',[$request->start, $request->end])->get();
-        } elseif($request->status == "") {
+            $status = 'semua';
+            $service = 'semua';
+        } elseif($request->status == "semua") {
             $data = Booking::whereBetween('date',[$request->start, $request->end])
             ->where('service',$request->service)
             ->get();
-        } elseif($request->service == "") {
+            $status = 'semua';
+        } elseif($request->service == "semua") {
             $data = Booking::whereBetween('date',[$request->start, $request->end])
             ->where('status',$request->status)
             ->get();
+            $service = 'semua';
         } else {
             $data = Booking::whereBetween('date',[$request->start, $request->end])
             ->where([
@@ -306,7 +314,7 @@ class DashboardController extends Controller
             ->get();
         }
         
-        return view('admin.report-search', compact('date','data'));
+        return view('admin.report-search', compact('date','data','start','end','status','service'));
     }
     /** END Admin */
 }

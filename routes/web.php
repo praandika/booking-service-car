@@ -57,5 +57,5 @@ Route::post('admin/report-search',[DashboardController::class, 'reportSearch'])-
 
 /** PRINT */
 Route::get('print/{id}',[PDFController::class, 'printNota'])->name('admin.print-nota');
-Route::get('print-report',[PDFController::class, 'printReport'])->name('admin.print-report');
+Route::get('print-report/{start}/{end}/{service}/{status}',[PDFController::class, 'printReport'])->name('admin.print-report');
 /** END PRINT */

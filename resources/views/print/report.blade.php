@@ -114,64 +114,31 @@
 
 <body>
     <center>
-        <h2 class="judul">NOTA</h2>
+        <h2 class="judul">Laporan</h2>
+        <h4>Booking Service Motohid Car Repair</h4>
+        <hr>
     </center>
 
-    @foreach($data as $o)
     <table class="referensi">
         <tr>
-            <th>Referensi</th>
-            <td>: {{ $ref }}</td>
+            <th>Tanggal</th>
+            <td>: {{ Carbon\Carbon::parse($start)->translatedFormat('d F Y') }} - {{ Carbon\Carbon::parse($end)->translatedFormat('d F Y') }}</td>
         </tr>
         <tr>
-            <th>Tanggal</th>
-            <td>: {{ Carbon\Carbon::parse($date)->translatedFormat('d F Y') }}</td>
+            <th>Tipe Service</th>
+            <td>: {{ $service == "semua" ? 'Semua' : $service }}</td>
         </tr>
         <tr>
             <th>Status Service</th>
-            <td>: {{ ucwords($o->status) }}</td>
+            <td>: {{ $status == "semua" ? 'Semua' : ucwords($status) }}</td>
         </tr>
     </table>
-
-
-    <div class="row">
-        <div class="col">
-            <h4>Info Bengkel</h4>
-            <div class="garis"></div>
-            <h3>Motohid Car Repair</h3>
-            <table class="info">
-                <tr>
-                    <td>Telp</td>
-                    <td>: 0333-558912</td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>: motohidcar.repair@gmail.com</td>
-                </tr>
-            </table>
-        </div>
-
-        <div class="col right">
-            <h4>Tagihan Untuk</h4>
-            <div class="garis"></div>
-            <h3>{{ $o->user->name }}</h3>
-            <table class="info">
-                <tr>
-                    <td>Telp</td>
-                    <td>: {{ $o->user->phone }}</td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>: {{ $o->user->email }}</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
+    <p style="font-size: 10px; margin-top: 5px; margin-bottom: 5px;">Printed from server : {{ Carbon\Carbon::parse($date)->translatedFormat('d F Y H:i:s') }}</p>
     <table class="data">
         <thead>
             <tr class="data">
                 <th>No</th>
+                <th>Pelanggan</th>
                 <th>Tanggal / Waktu Booking</th>
                 <th>Service</th>
                 <th>Mobil</th>
@@ -180,21 +147,22 @@
         </thead>
         <tbody>
             @php($no = 1)
+            @foreach($data as $o)
             <tr class="data">
                 <td>{{ $no++ }}</td>
+                <td>{{ $o->user->name }} | {{ $o->user->phone }}</td>
                 <td>{{ $o->date }} | {{ $o->time }}</td>
                 <td>{{ $o->service }}</td>
                 <td>{{ $o->brand }} | {{ $o->type }} | {{ $o->plate_no }}</td>
                 <td>Rp {{ number_format($o->estimation, 0, ',', '.')}}</td>
             </tr>
-            <tr class="total">
-                <th colspan="3"></th>
-                <th class="nominal">Jumlah Tertagih</th>
-                <th class="nominal">Rp {{ number_format($o->estimation, 0, ',', '.')}},-</th>
+            @endforeach
+            <tr class="total" style="font-weight: bold;">
+                <td colspan="5" style="text-align: right;">Total Estimasi Biaya</td>
+                <td>Rp {{ number_format($estimasiBiaya, 0, ',', '.')}}</td>
             </tr>
         </tbody>
     </table>
-    @endforeach
 
     <br>
     <hr>
