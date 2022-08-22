@@ -48,6 +48,12 @@
                         <input type="hidden" value="{{ $layanan == 'Service Mesin' ? 'Service Berkala A' : 'Full Body Painting' }}" name="paket">
                         <input type="hidden" value="{{ $layanan }}" name="layanan">
                         <input type="hidden" value="{{ $jemput }}" name="jemput">
+                        @if($layanan == 'Service Mesin')
+                        <ul style="text-align: left; margin-left: 25px;">
+                            <li>Ganti Oli</li>
+                            <li>Service Ringan</li>
+                        </ul>
+                        @endif
                         <button class="btn-booking">Booking</button>
                     </form>
                 </div>
@@ -62,6 +68,13 @@
                         <input type="hidden" value="{{ $layanan == 'Service Mesin' ? 'Service Berkala B' : 'Cat 1 Panel' }}" name="paket">
                         <input type="hidden" value="{{ $layanan }}" name="layanan">
                         <input type="hidden" value="{{ $jemput }}" name="jemput">
+                        @if($layanan == 'Service Mesin')
+                        <ul style="text-align: left; margin-left: 25px;">
+                            <li>Ganti Oli</li>
+                            <li>Service Ringan</li>
+                            <li>Service (Rem, Suspensi)</li>
+                        </ul>
+                        @endif
                         <button class="btn-booking">Booking</button>
                     </form>
                 </div>
@@ -76,6 +89,13 @@
                         <input type="hidden" value="{{ $layanan == 'Service Mesin' ? 'Service Berkala C' : 'Cat 2 Panel' }}" name="paket">
                         <input type="hidden" value="{{ $layanan }}" name="layanan">
                         <input type="hidden" value="{{ $jemput }}" name="jemput">
+                        @if($layanan == 'Service Mesin')
+                        <ul style="text-align: left; margin-left: 25px;">
+                            <li>Ganti Oli</li>
+                            <li>Service</li>
+                            <li>Tune Up</li>
+                        </ul>
+                        @endif
                         <button class="btn-booking">Booking</button>
                     </form>
                 </div>
@@ -90,6 +110,14 @@
                         <input type="hidden" value="{{ $layanan == 'Service Mesin' ? 'Service Berkala D' : 'Cat 3 Panel' }}" name="paket">
                         <input type="hidden" value="{{ $layanan }}" name="layanan">
                         <input type="hidden" value="{{ $jemput }}" name="jemput">
+                        @if($layanan == 'Service Mesin')
+                        <ul style="text-align: left; margin-left: 25px;">
+                            <li>Ganti Oli</li>
+                            <li>Service</li>
+                            <li>Tune Up</li>
+                            <li>Kuras</li>
+                        </ul>
+                        @endif
                         <button class="btn-booking">Booking</button>
                     </form>
                 </div>
