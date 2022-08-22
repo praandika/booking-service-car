@@ -4,7 +4,7 @@ namespace App\Charts;
 
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 
-class BookingByMonth extends Chart
+class ChartJS extends Chart
 {
     /**
      * Initializes the chart.

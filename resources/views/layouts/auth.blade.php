@@ -17,6 +17,8 @@
     <!-- azia CSS -->
     <link rel="stylesheet" href="{{ asset('admin/css/azia.css') }}">
 
+    @stack('after-css')
+
 </head>
 
 <body class="az-body">

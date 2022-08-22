@@ -158,6 +158,8 @@
     <script src="{{ asset('admin/js/jquery.cookie.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/moment.js') }}"></script>
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <!-- Chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
     
     <!-- SweetAlert -->
     @include('sweetalert::alert')

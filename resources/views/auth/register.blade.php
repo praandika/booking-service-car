@@ -63,14 +63,19 @@
                         placeholder="Konfirmasi kata sandi Anda" name="password_confirmation" required
                         autocomplete="new-password">
                 </div><!-- form-group -->
-                <button type="submit" class="btn btn-az-primary btn-block">Buat Akun</button>
-
-                <hr>
+                <button type="submit" class="btn btn-danger btn-block">Buat Akun</button>
+                <br>
+                <center>
+                    - Atau -
+                </center>
 
                 <div class="row justify-content-md-center">
                     <div class="col-md-auto">
-                        <a href="{{ route('google.login') }}" style="text-align: center;">
-                            <img src="{{ asset('img/btn_google_signin_dark_normal_web.png') }}" style="margin-left: 3em;">
+                        <a href="{{ route('google.login') }}" class="google-btn" style="color: #ffffff;">
+                            <div class="btn-group" style="position: relative; width: 250px; height: 50px; background-color: #4285f4; border: 2px solid #4285f4">
+                                <img src="{{ asset('img/google-logo.png') }}">
+                                <span style="text-align: center; margin-top: 12px; margin-left: 30px;">Masuk dengan Google</span>
+                            </div>
                         </a>
                     </div>
                 </div>

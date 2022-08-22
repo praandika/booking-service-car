@@ -9,6 +9,7 @@ use App\Models\WorkOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Charts\ChartJS;
 
 class DashboardController extends Controller
 {
@@ -92,6 +93,8 @@ class DashboardController extends Controller
     /** Admin */
     public function dashboard(){
         $date = Carbon::now('GMT+8');
+        $year = Carbon::now('GMT+8')->format('Y');
+        $month = Carbon::now('GMT+8')->format('m');
         $now = Carbon::now('GMT+8')->format('Y-m-d');
 
         $data = Booking::where([
@@ -133,22 +136,54 @@ class DashboardController extends Controller
         ])
         ->count();
 
-        $tertunda = Booking::where([
-            ['status','=','tertunda'],
-        ])
-        ->count();
+        $tertunda = Booking::where('status','=','tertunda')->count();
+        $dikerjakan = Booking::where('status','=','dikerjakan')->count();
+        $selesai = Booking::where('status','=','selesai')->count();
 
-        $dikerjakan = Booking::where([
-            ['status','=','dikerjakan'],
-        ])
-        ->count();
+        /**Chart Booking By Month */
+        $jan = Booking::whereMonth('date','01')->whereYear('date',$year)->count();
+        $feb = Booking::whereMonth('date','02')->whereYear('date',$year)->count();
+        $mar = Booking::whereMonth('date','03')->whereYear('date',$year)->count();
+        $apr = Booking::whereMonth('date','04')->whereYear('date',$year)->count();
+        $may = Booking::whereMonth('date','05')->whereYear('date',$year)->count();
+        $jun = Booking::whereMonth('date','06')->whereYear('date',$year)->count();
+        $jul = Booking::whereMonth('date','07')->whereYear('date',$year)->count();
+        $aug = Booking::whereMonth('date','08')->whereYear('date',$year)->count();
+        $sep = Booking::whereMonth('date','09')->whereYear('date',$year)->count();
+        $oct = Booking::whereMonth('date','10')->whereYear('date',$year)->count();
+        $nov = Booking::whereMonth('date','11')->whereYear('date',$year)->count();
+        $dec = Booking::whereMonth('date','12')->whereYear('date',$year)->count();
 
-        $selesai = Booking::where([
-            ['status','=','selesai'],
-        ])
-        ->count();
+        $chartBooking = new ChartJS;
+        $chartBooking->title('Grafik Booking Tahun Ini');
+        $chartBooking->displayLegend(true);
+        $chartBooking->labels(['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']);
+        $chartBooking->dataset($year,'line',[$jan, $feb, $mar, $apr, $may, $jun, $jul, $aug, $sep, $oct, $nov, $dec])
+        ->linetension(0.0)
+        ->color("#f00a0a")
+        ->backgroundcolor("transparent");
 
-        return view('admin.index', compact('date','data','serviceCount','pelanggan','svcMesin','bodyRepair','reschedule','tertunda','dikerjakan','selesai','bookingAll'));
+        /**Chart Booking By Package */
+        $sA = Booking::whereMonth('date',$month)->whereYear('date',$year)->where('package','Service Berkala A')->count();
+        $sB = Booking::whereMonth('date',$month)->whereYear('date',$year)->where('package','Service Berkala B')->count();
+        $sC = Booking::whereMonth('date',$month)->whereYear('date',$year)->where('package','Service Berkala C')->count();
+        $sD = Booking::whereMonth('date',$month)->whereYear('date',$year)->where('package','Service Berkala D')->count();
+
+        $fB = Booking::whereMonth('date',$month)->whereYear('date',$year)->where('package','Full Body Painting')->count();
+        $c1 = Booking::whereMonth('date',$month)->whereYear('date',$year)->where('package','Cat 1 Panel')->count();
+        $c2 = Booking::whereMonth('date',$month)->whereYear('date',$year)->where('package','Cat 2 Panel')->count();
+        $c3 = Booking::whereMonth('date',$month)->whereYear('date',$year)->where('package','Cat 3 Panel')->count();
+
+        $chartPaket = new ChartJS;
+        $chartPaket->title('Grafik Paket');
+        $chartPaket->displayLegend(true);
+        $chartPaket->labels(['Berkala A','Berkala B','Berkala C','Berkala D','Full Body Paint','Cat 1 Panel','Cat 2 Panel','Cat 3 Panel']);
+        $chartPaket->dataset($year,'bar',[$sA, $sB, $sC, $sD, $fB, $c1, $c2, $c3])
+        ->linetension(0.0)
+        ->color(["#eb0c0f","#eb690c","#ebc20c","#04cc1b","#0003b5","#fc28d9","#c202a2","#c20232"])
+        ->backgroundcolor(["#eb0c0f","#eb690c","#ebc20c","#04cc1b","#0003b5","#fc28d9","#c202a2","#c20232"]);
+
+        return view('admin.index', compact('date','data','serviceCount','pelanggan','svcMesin','bodyRepair','reschedule','tertunda','dikerjakan','selesai','bookingAll','chartBooking','chartPaket'));
     }
 
     public function bookingList(){

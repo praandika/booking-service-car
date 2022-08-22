@@ -32,6 +32,7 @@
                         <h4>{{ $serviceCount }}</h4>
                     </div>
                 </div><!-- col -->
+                <div style="height: 22px;"></div>
             </div>
         </div>
     </div>
@@ -54,6 +55,7 @@
                         <h4>{{ $pelanggan }}</h4>
                     </div>
                 </div><!-- col -->
+                <div style="height: 22px;"></div>
             </div>
         </div>
     </div>
@@ -71,6 +73,7 @@
                             <label style="background-color: #1f1f1f; color: #ffffff; padding: 3px; font-size: 9px; font-weight: bold; cursor: pointer;">Service Mesin</label>
                             <center>
                                 <h4>{{ $svcMesin }}</h4>
+                                <span style="font-size: 10px;">Show detail ></span>
                             </center>
                         </a>
                     </div>
@@ -79,6 +82,7 @@
                             <label style="background-color: #b59d00; color: #000000; padding: 3px; font-size: 9px; font-weight: bold; cursor: pointer;">Body Repair</label>
                             <center>
                                 <h4>{{ $bodyRepair }}</h4>
+                                <span style="font-size: 10px;">Show detail ></span>
                             </center>
                         </a>
                     </div>
@@ -87,6 +91,7 @@
                             <label style="background-color: #277BC0; color: #ffffff; padding: 3px; font-size: 9px; font-weight: bold; cursor: pointer;">Total Booking</label>
                             <center>
                                 <h4>{{ $bookingAll }}</h4>
+                                <span style="font-size: 10px;">Show detail ></span>
                             </center>
                         </a>
                     </div>
@@ -113,8 +118,18 @@
                         <h4>{{ $reschedule }}</h4>
                     </div>
                 </div><!-- col -->
+                <div style="height: 22px;"></div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-sm-12 col-lg-6">
+        {!! $chartBooking->container() !!}
+    </div>
+    <div class="col-md-6 col-sm-12 col-lg-6">
+        {!! $chartPaket->container() !!}
     </div>
 </div>
 
@@ -169,6 +184,10 @@
 </div>
 
 @push('after-script')
+
+{!! $chartBooking->script() !!}
+{!! $chartPaket->script() !!}
+
 <script>
     $(document).ready(function () {
         $('#TableData').DataTable();
