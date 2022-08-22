@@ -36,12 +36,6 @@
         </div>
         <br>
     </div>
-    <br>
-    <div class="row">
-        <div class="col-md-12 mt-3 mt-md-0">
-            <p style="font-size: 12px; color: red;">* Kosongkan Tipe Service dan Status untuk mencari semua data</p>
-        </div>
-    </div>
 </form>
 
 <div class="row" style="margin-top: 20px;">

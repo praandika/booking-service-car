@@ -3,6 +3,73 @@
 @section('dash-title',$title)
 
 @section('content')
+<div class="row">
+    <div class="col-md-4 col-sm-12 col-lg-4">
+        <div class="card card-dashboard-five">
+            <div class="card-header">
+                <h6 class="card-title">Tertunda</h6>
+                <span class="card-text">Info pengerjaan tertunda.</span>
+            </div><!-- card-header -->
+            <div class="card-body row row-sm">
+                <div class="col-12 d-sm-flex align-items-center">
+                    <div class="card-chart bg-danger">
+                        <h5 style="color: #fff;">
+                            <i class="typcn typcn-media-pause"></i>
+                        </h5>
+                    </div>
+                    <div>
+                        <label>Jumlah Tertunda</label>
+                        <h4>{{ $countTertunda }}</h4>
+                    </div>
+                </div><!-- col -->
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-12 col-lg-4">
+        <div class="card card-dashboard-five">
+            <div class="card-header">
+                <h6 class="card-title">Dikerjakan</h6>
+                <span class="card-text">Info pengerjaan terproses.</span>
+            </div><!-- card-header -->
+            <div class="card-body row row-sm">
+                <div class="col-12 d-sm-flex align-items-center">
+                    <div class="card-chart bg-warning">
+                        <h5 style="color: #fff;">
+                            <i class="typcn typcn-spanner"></i>
+                        </h5>
+                    </div>
+                    <div>
+                        <label>Jumlah Dikerjakan</label>
+                        <h4>{{ $countDikerjakan }}</h4>
+                    </div>
+                </div><!-- col -->
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-12 col-lg-4">
+        <div class="card card-dashboard-five">
+            <div class="card-header">
+                <h6 class="card-title">Selesai</h6>
+                <span class="card-text">Info pengerjaan selesai.</span>
+            </div><!-- card-header -->
+            <div class="card-body row row-sm">
+                <div class="col-12 d-sm-flex align-items-center">
+                    <div class="card-chart bg-primary">
+                        <h5 style="color: #fff;">
+                            <i class="typcn typcn-tick"></i>
+                        </h5>
+                    </div>
+                    <div>
+                        <label>Jumlah Selesai</label>
+                        <h4>{{ $countSelesai }}</h4>
+                    </div>
+                </div><!-- col -->
+            </div>
+        </div>
+    </div>
+</div>
 <div class="row" style="margin-top: 20px;">
     <div class="table-responsive">
         <table class="table table-hover table-bordered mg-b-0" id="TableData">
@@ -26,7 +93,7 @@
                     <th scope="row">{{ $no++ }}</th>
                     <th>{{ $o->user->name }} | {{ $o->user->phone }}</th>
                     <td>{{ Carbon\Carbon::parse($o->date)->translatedFormat('d F Y') }} | {{ $o->time }}</td>
-                    <td>{{ $o->service }}</td>
+                    <td>{{ $o->service }} | {{ $o->package }}</td>
                     <td>{{ $o->brand }} {{ $o->type }} | {{ $o->color }} | {{ $o->year }} | {{ $o->transmition }}</td>
                     <td>{{ $o->plate_no }}</td>
                     <td>{{ $o->frame_no }}</td>

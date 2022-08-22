@@ -92,7 +92,7 @@
                 <tr>
                     <th scope="row">{{ $no++ }}</th>
                     <td>{{ Carbon\Carbon::parse($o->date)->translatedFormat('d F Y') }} | {{ $o->time }}</td>
-                    <td>{{ $o->service }}</td>
+                    <td>{{ $o->service }} | {{ $o->package }}</td>
                     <td>{{ $o->brand }} {{ $o->type }} | {{ $o->color }} | {{ $o->year }} | {{ $o->transmition }}</td>
                     <td>{{ $o->plate_no }}</td>
                     <td>{{ $o->frame_no }}</td>

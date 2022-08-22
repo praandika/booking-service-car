@@ -22,6 +22,7 @@
                 @csrf
                 <input type="hidden" value="{{ $jemput }}" name="jemput">
                 <input type="hidden" value="{{ $layanan }}" name="layanan">
+                <input type="hidden" value="{{ $paket }}" name="paket">
                 <input type="date" name="tanggal" id="inputdate" required> <br>
                 <button class="cta-btn" style="background: transparent;">Booking</button>
             </form>

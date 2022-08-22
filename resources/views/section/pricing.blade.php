@@ -21,7 +21,7 @@
                         <li>Tune Up</li>
                     </ul>
                     <div class="btn-wrap">
-                        <a href="{{ url('member/booking-tanggal/service-mesin') }}" class="btn-buy">Booking</a>
+                        <a href="{{ url('member/booking-paket/service-mesin') }}" class="btn-buy">Booking</a>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                         <li>Atap Mobil</li>
                     </ul>
                     <div class="btn-wrap">
-                        <a href="{{ url('member/booking-tanggal/body-repair') }}" class="btn-buy">Booking</a>
+                        <a href="{{ url('member/booking-paket/body-repair') }}" class="btn-buy">Booking</a>
                     </div>
                 </div>
             </div>

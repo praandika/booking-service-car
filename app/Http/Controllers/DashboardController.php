@@ -164,8 +164,10 @@ class DashboardController extends Controller
         $data = Booking::where('id',$id)->get();
         $emp = Employee::where('position','Teknisi')
         ->orderBy('name','asc')->get();
+        $countEmp = Employee::where('position','Teknisi')
+        ->count();
 
-        return view('admin.work-order-form', compact('date','data','emp'));
+        return view('admin.work-order-form', compact('date','data','emp','countEmp'));
     }
 
     public function workOrderStore(Request $request, $id){
@@ -203,7 +205,7 @@ class DashboardController extends Controller
             'updated_at' => Carbon::now('GMT+8')->format('Y-m-d H:i:s'),
         ]);
 
-        toast('Yay! Perngerjaan Selesai', 'success');
+        toast('Yay! Pengerjaan Selesai', 'success');
         return redirect()->route('admin.work-finished');
     }
 
@@ -234,6 +236,17 @@ class DashboardController extends Controller
         return redirect()->route('admin.employee');
     }
 
+    public function employeeStoreAtWoPage(Request $request){
+        $data = New Employee;
+        $data->name = $request->name;
+        $data->phone = $request->phone;
+        $data->position = $request->position;
+        $data->save();
+
+        toast('Yay! berhasil tambah karyawan baru', 'success');
+        return redirect()->back();
+    }
+
     public function employeeEdit($id){
         $date = Carbon::now('GMT+8');
         $data = Employee::where('id',$id)->get();
@@ -255,29 +268,62 @@ class DashboardController extends Controller
     }
 
     public function showBookingAll(){
+        $countTertunda = Booking::orderBy('date','asc')->where('status','tertunda')->count();
+        $countDikerjakan = Booking::orderBy('date','asc')->where('status','dikerjakan')->count();
+        $countSelesai = Booking::orderBy('date','asc')->where('status','selesai')->count();
         $title = 'Daftar Booking';
         $date = Carbon::now('GMT+8');
         $data = Booking::orderBy('date','asc')->get();
 
-        return view('admin.show-booking', compact('date','data','title'));
+        return view('admin.show-booking', compact('date','data','title','countTertunda','countDikerjakan','countSelesai'));
     }
 
     public function showBookingService(){
+        $countTertunda = Booking::orderBy('date','asc')->where([
+            ['service','Service Mesin'],
+            ['status','tertunda'],
+        ])->count();
+        
+        $countDikerjakan = Booking::orderBy('date','asc')->where([
+            ['service','Service Mesin'],
+            ['status','dikerjakan'],
+        ])->count();
+        
+        $countSelesai = Booking::orderBy('date','asc')->where([
+            ['service','Service Mesin'],
+            ['status','selesai'],
+        ])->count();
+        
         $title = 'Daftar Service Mesin';
         $date = Carbon::now('GMT+8');
         $data = Booking::where('service','Service Mesin')
         ->orderBy('date','asc')->get();
 
-        return view('admin.show-booking', compact('date','data','title'));
+        return view('admin.show-booking', compact('date','data','title','countTertunda','countDikerjakan','countSelesai'));
     }
 
     public function showBookingRepair(){
+        $countTertunda = Booking::orderBy('date','asc')->where([
+            ['service','Body Repair'],
+            ['status','tertunda'],
+        ])->count();
+        
+        $countDikerjakan = Booking::orderBy('date','asc')->where([
+            ['service','Body Repair'],
+            ['status','dikerjakan'],
+        ])->count();
+        
+        $countSelesai = Booking::orderBy('date','asc')->where([
+            ['service','Body Repair'],
+            ['status','selesai'],
+        ])->count();
+        
         $title = 'Daftar Body Repair';
         $date = Carbon::now('GMT+8');
         $data = Booking::where('service','Body Repair')
         ->orderBy('date','asc')->get();
 
-        return view('admin.show-booking', compact('date','data','title'));
+        return view('admin.show-booking', compact('date','data','title','countTertunda','countDikerjakan','countSelesai'));
     }
 
     public function showReport(){

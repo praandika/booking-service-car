@@ -28,7 +28,7 @@
                     <th scope="row">{{ $no++ }}</th>
                     <th>{{ $o->booking->user->name }} | {{ $o->booking->user->phone }}</th>
                     <td>{{ Carbon\Carbon::parse($o->booking->date)->translatedFormat('d F Y') }} | {{ $o->booking->time }}</td>
-                    <td>{{ $o->booking->service }}</td>
+                    <td>{{ $o->booking->service }} | {{ $o->booking->package }}</td>
                     <td>{{ $o->employee->name }}</td>
                     <td>{{ $o->booking->brand }} {{ $o->booking->type }} | {{ $o->booking->color }} | {{ $o->booking->year }} | {{ $o->booking->transmition }}</td>
                     <td>{{ $o->booking->plate_no }}</td>

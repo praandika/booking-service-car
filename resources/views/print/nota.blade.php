@@ -183,9 +183,9 @@
             <tr class="data">
                 <td>{{ $no++ }}</td>
                 <td>{{ $o->date }} | {{ $o->time }}</td>
-                <td>{{ $o->service }}</td>
+                <td>{{ $o->service }} | {{ $o->package }}</td>
                 <td>{{ $o->brand }} | {{ $o->type }} | {{ $o->plate_no }}</td>
-                <td>Rp {{ number_format($o->estimation, 0, ',', '.')}}</td>
+                <td style="width: 150px; text-align: right;">Rp {{ number_format($o->estimation, 0, ',', '.')}}</td>
             </tr>
             <tr class="total">
                 <th colspan="3"></th>

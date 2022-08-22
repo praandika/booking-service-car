@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('frame_no')->nullable();
             $table->string('service');
+            $table->string('package');
             $table->string('plate_no');
             $table->string('complaint')->nullable();
             $table->string('brand');

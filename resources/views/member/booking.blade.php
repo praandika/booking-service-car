@@ -40,7 +40,7 @@
                     <div class="icon"><i class="bx bxs-cog"></i></div>
                     <h4><a href="">Servis Mesin</a></h4>
                     <p>Teknisi handal siap untuk memperbaiki segala masalah mesin mobil Anda</p>
-                    <form action="{{ route('member.goto-tanggal') }}" method="GET">
+                    <form action="{{ route('member.goto-paket') }}" method="GET">
                         @csrf
                         @if($jemput == 1)
                         <input type="hidden" name="jemput" value="1">
@@ -57,7 +57,7 @@
                     <div class="icon"><i class="bx bx-car"></i></div>
                     <h4><a href="">Body Repair</a></h4>
                     <p>Memperbaiki body mobil Anda dari lecet ringan hingga berat</p>
-                    <form action="{{ route('member.goto-tanggal') }}" method="GET">
+                    <form action="{{ route('member.goto-paket') }}" method="GET">
                         @csrf
                         @if($jemput == 1)
                         <input type="hidden" name="jemput" value="1">

@@ -58,9 +58,10 @@
         <div class="col-lg-12">
             <form action="{{ route('member.store-booking') }}" method="POST">
                 @csrf
-                <input type="hidden" name="estimation" value="{{ ($layanan == 'Service Mesin') ? 250000 : 500000 }}">
+                <input type="hidden" name="estimation" value="{{ $estimation }}">
                 <input type="hidden" value="{{ Auth::user()->id }}" name="user_id" required>
                 <input type="hidden" class="form-control" name="service" value="{{ $layanan }}" required>
+                <input type="hidden" name="paket" value="{{ $paket }}">
                 <input type="hidden" class="form-control" name="date" value="{{ $tanggal }}" required>
                 <input type="hidden" class="form-control" name="time" value="{{ $waktu }}" required>
 
@@ -75,7 +76,7 @@
                     </div>
                     <div class="col-md-4">
                         <label for="">Layanan</label>
-                        <h5>{{ $layanan }}</h5>
+                        <h5>{{ $layanan }} | {{ $paket }}</h5>
                     </div>
                 </div>
 
@@ -90,7 +91,7 @@
                     </div>
                     <div class="col-md-4">
                         <label for="">Estimasi</label>
-                        <h5>{{ ($layanan == 'Service Mesin') ? 'Rp 250.000' : 'Rp 500.000' }}</h5>
+                        <h5>Rp {{ number_format($estimation, 0, ',', '.')}}</h5>
                     </div>
                 </div>
 

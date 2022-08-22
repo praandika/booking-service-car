@@ -44,12 +44,6 @@
             <a href="{{ url('print-report/'.$start.'/'.$end.'/'.$service.'/'.$status) }}" style="position: absolute; bottom: 0px; right: -165px; padding: 8px 15px; border:none; background-color: blue; color: #ffffff;"><i class="far fa-file-pdf"></i> Export to PDF</a>
         </div>
     </div>
-    <br>
-    <div class="row">
-        <div class="col-md-12 mt-3 mt-md-0">
-            <p style="font-size: 12px; color: red;">* Kosongkan Tipe Service dan Status untuk mencari semua data</p>
-        </div>
-    </div>
 </form>
 
 <div class="row" style="margin-top: 20px;">
@@ -74,7 +68,7 @@
                     <th scope="row">{{ $no++ }}</th>
                     <th>{{ $o->user->name }} | {{ $o->user->phone }}</th>
                     <td>{{ Carbon\Carbon::parse($o->date)->translatedFormat('d F Y') }} | {{ $o->time }}</td>
-                    <td>{{ $o->service }}</td>
+                    <td>{{ $o->service }} | {{ $o->package }}</td>
                     <td>{{ $o->brand }} {{ $o->type }} | {{ $o->color }} | {{ $o->year }} | {{ $o->transmition }}</td>
                     <td>{{ $o->plate_no }}</td>
                     <td>{{ $o->frame_no }}</td>

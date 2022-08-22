@@ -45,7 +45,7 @@
         <div class="row">
             <div class="col-md-4">
                 <label for="">Layanan</label>
-                <h5>{{ $o->service }}</h5>
+                <h5>{{ $o->service }} | {{ $o->package }}</h5>
             </div>
             <div class="col-md-4">
                 <label for="">Estimasi</label>

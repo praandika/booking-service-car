@@ -29,7 +29,8 @@ Route::get('member', [DashboardController::class, 'member'])->name('member');
 Route::get('member/booking-list', [DashboardController::class, 'memberBookingList'])->name('member.booking-list');
 Route::get('member/history', [DashboardController::class, 'memberHistory'])->name('member.history');
 Route::get('member/booking/{jemput?}', [HomeController::class, 'booking'])->name('member.booking')->middleware('auth');
-Route::get('member/booking-tanggal/{service?}', [HomeController::class, 'tanggal'])->name('member.goto-tanggal')->middleware('auth');
+Route::get('member/booking-paket/{service?}', [HomeController::class, 'paket'])->name('member.goto-paket')->middleware('auth');
+Route::get('member/booking-tanggal', [HomeController::class, 'tanggal'])->name('member.goto-tanggal')->middleware('auth');
 Route::get('member/booking-waktu', [HomeController::class, 'waktu'])->name('member.goto-waktu')->middleware('auth');
 Route::get('member/booking-form', [HomeController::class, 'form'])->name('member.goto-form')->middleware('auth');
 Route::post('member/booking-store', [HomeController::class, 'storeBooking'])->name('member.store-booking')->middleware('auth');
@@ -47,6 +48,7 @@ Route::get('admin/work-order-finishing/{id}',[DashboardController::class, 'workO
 Route::get('admin/work-finished',[DashboardController::class, 'workFinished'])->name('admin.work-finished');
 Route::get('admin/employee',[DashboardController::class, 'employee'])->name('admin.employee');
 Route::post('admin/employee-store',[DashboardController::class, 'employeeStore'])->name('admin.employee-store');
+Route::post('admin/employee-store-at-wo-page',[DashboardController::class, 'employeeStoreAtWoPage'])->name('admin.employee-store-at-wo-page');
 Route::post('admin/employee-update/{id}',[DashboardController::class, 'employeeUpdate'])->name('admin.employee-update');
 Route::get('admin/booking-all',[DashboardController::class, 'showBookingAll'])->name('admin.booking-all');
 Route::get('admin/booking-service',[DashboardController::class, 'showBookingService'])->name('admin.booking-service');

@@ -44,6 +44,7 @@
                         <input type="hidden" value="{{ $layanan }}" name="layanan">
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
                         <input type="hidden" value="{{ $jemput }}" name="jemput">
+                        <input type="hidden" value="{{ $paket }}" name="paket">
                         <button class="btn-booking">Booking</button>
                     </form>
                 </div>
@@ -59,6 +60,7 @@
                         <input type="hidden" value="{{ $layanan }}" name="layanan">
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
                         <input type="hidden" value="{{ $jemput }}" name="jemput">
+                        <input type="hidden" value="{{ $paket }}" name="paket">
                         <button class="btn-booking">Booking</button>
                     </form>
                 </div>
@@ -74,6 +76,7 @@
                         <input type="hidden" value="{{ $layanan }}" name="layanan">
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
                         <input type="hidden" value="{{ $jemput }}" name="jemput">
+                        <input type="hidden" value="{{ $paket }}" name="paket">
                         <button class="btn-booking">Booking</button>
                     </form>
                 </div>
@@ -91,6 +94,7 @@
                         <input type="hidden" value="{{ $layanan }}" name="layanan">
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
                         <input type="hidden" value="{{ $jemput }}" name="jemput">
+                        <input type="hidden" value="{{ $paket }}" name="paket">
                         <button class="btn-booking">Booking</button>
                     </form>
                 </div>
@@ -106,6 +110,7 @@
                         <input type="hidden" value="{{ $layanan }}" name="layanan">
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
                         <input type="hidden" value="{{ $jemput }}" name="jemput">
+                        <input type="hidden" value="{{ $paket }}" name="paket">
                         <button class="btn-booking">Booking</button>
                     </form>
                 </div>
@@ -121,6 +126,7 @@
                         <input type="hidden" value="{{ $layanan }}" name="layanan">
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
                         <input type="hidden" value="{{ $jemput }}" name="jemput">
+                        <input type="hidden" value="{{ $paket }}" name="paket">
                         <button class="btn-booking">Booking</button>
                     </form>
                 </div>

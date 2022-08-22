@@ -25,7 +25,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="typcn typcn-times"></i> </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('admin.employee-store') }}" method="post">
+                <form action="{{ Route::is('admin.work-order-form') ? route('admin.employee-store-at-wo-page') : route('admin.employee-store') }}" method="post">
                 @csrf
                     <div class="row">
                         <div class="col-md-12 form-group mt-3 mt-md-0">
