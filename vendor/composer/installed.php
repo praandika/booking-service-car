@@ -5,11 +5,20 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'e80a26cbabfa868d3ac290dec70be2530572e172',
+        'reference' => 'a52d15981d653fb9ec699153c395392de54759c5',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
     'versions' => array(
+        'balping/json-raw-encoder' => array(
+            'pretty_version' => 'v1.0.1',
+            'version' => '1.0.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../balping/json-raw-encoder',
+            'aliases' => array(),
+            'reference' => 'e2b0ab888342b0716f1f0628e2fa13b345c5f276',
+            'dev_requirement' => false,
+        ),
         'barryvdh/laravel-dompdf' => array(
             'pretty_version' => 'v2.0.0',
             'version' => '2.0.0.0',
@@ -26,6 +35,15 @@
             'install_path' => __DIR__ . '/../brick/math',
             'aliases' => array(),
             'reference' => 'de846578401f4e58f911b3afeb62ced56365ed87',
+            'dev_requirement' => false,
+        ),
+        'consoletvs/charts' => array(
+            'pretty_version' => '6.5.6',
+            'version' => '6.5.6.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../consoletvs/charts',
+            'aliases' => array(),
+            'reference' => '6914e85086749ac90832b0b14479642fe0337cf4',
             'dev_requirement' => false,
         ),
         'cordoval/hamcrest-php' => array(
@@ -397,7 +415,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'e80a26cbabfa868d3ac290dec70be2530572e172',
+            'reference' => 'a52d15981d653fb9ec699153c395392de54759c5',
             'dev_requirement' => false,
         ),
         'laravel/pint' => array(
