@@ -65,15 +65,15 @@
                 </div><!-- form-group -->
                 <button type="submit" class="btn btn-az-primary btn-block">Buat Akun</button>
 
-                <center>
-                    <br>
-                    <p>- OR -</p>
-                </center>
+                <hr>
 
-                <div class="row row-xs">
-                    <div class="col-sm-12"><a class="btn btn-block" style="background-color: #c82333;" href="{{ route('google.login') }}"><i
-                                class="fab fa-google"></i> Daftar dengan Google</a></div>
-                </div><!-- row -->
+                <div class="row justify-content-md-center">
+                    <div class="col-md-auto">
+                        <a href="{{ route('google.login') }}" style="text-align: center;">
+                            <img src="{{ asset('img/btn_google_signin_dark_normal_web.png') }}" style="margin-left: 3em;">
+                        </a>
+                    </div>
+                </div>
             </form>
         </div><!-- az-signup-header -->
         <div class="az-signup-footer">

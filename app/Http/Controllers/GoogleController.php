@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Console\View\Components\Alert;
 
 
 class GoogleController extends Controller
@@ -36,8 +38,13 @@ class GoogleController extends Controller
                 Auth::login($newUser);
                 return redirect()->route('home');
             }
-        } catch (\Throwable $th) {
-            return redirect('auth/google');
+        } catch (Exception $e) {
+            if ($e->getMessage() == "") {
+                return redirect('auth/google');
+            } else {
+                alert()->warning('Email Sudah Terdaftar!','Gunakan akun lain.');
+                return redirect()->route('login');
+            }
         }
     }
 }
