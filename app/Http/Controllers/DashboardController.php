@@ -175,11 +175,10 @@ class DashboardController extends Controller
         $c3 = Booking::whereMonth('date',$month)->whereYear('date',$year)->where('package','Cat 3 Panel')->count();
 
         $chartPaket = new ChartJS;
-        $chartPaket->title('Grafik Paket');
+        $chartPaket->title('Grafik Paket Bulan Ini');
         $chartPaket->displayLegend(true);
         $chartPaket->labels(['Berkala A','Berkala B','Berkala C','Berkala D','Full Body Paint','Cat 1 Panel','Cat 2 Panel','Cat 3 Panel']);
         $chartPaket->dataset($year,'bar',[$sA, $sB, $sC, $sD, $fB, $c1, $c2, $c3])
-        ->linetension(0.0)
         ->color(["#eb0c0f","#eb690c","#ebc20c","#04cc1b","#0003b5","#fc28d9","#c202a2","#c20232"])
         ->backgroundcolor(["#eb0c0f","#eb690c","#ebc20c","#04cc1b","#0003b5","#fc28d9","#c202a2","#c20232"]);
 

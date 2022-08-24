@@ -84,7 +84,7 @@ class HomeController extends Controller
                 $estimation = 7500000;
             } elseif($paket == "Cat 1 Panel") {
                 $estimation = 700000;
-            } elseif($paket == "Cat 1 Panel") {
+            } elseif($paket == "Cat 2 Panel") {
                 $estimation = 1400000;
             } else {
                 $estimation = 2100000;
