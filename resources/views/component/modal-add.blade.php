@@ -42,13 +42,17 @@
                     <div class="row">
                         <div class="col-md-12 form-group mt-3 mt-md-0">
                             <label for="">Posisi</label>
+                            <input type="text" name="position" class="form-control" placeholder="Masukkan posisi karyawan" value="Teknisi" readonly required>
+                        </div>
+                        <!-- <div class="col-md-12 form-group mt-3 mt-md-0">
+                            <label for="">Posisi</label>
                             <select name="position" class="form-control" required>
                                 <option value="">Pilih Posisi</option>
                                 <option value="Teknisi">Teknisi</option>
                                 <option value="SRO">Service Reminder Officer</option>
                                 <option value="SM">Service Manager</option>
                             </select>
-                        </div>
+                        </div> -->
                     </div>
             </div>
             <div class="modal-footer">

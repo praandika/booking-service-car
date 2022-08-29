@@ -195,9 +195,29 @@ class DashboardController extends Controller
 
     public function workOrderForm($id){
         $date = Carbon::now('GMT+8');
+        $today = Carbon::now('GMT+8')->format('Y-m-d');
         $data = Booking::where('id',$id)->get();
+        $empName = [];
+        foreach ($data as $o) {
+            $time = $o->time;
+        }
+        $cekEmp = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
+        ->join('employees','work_orders.employee_id','=','employees.id')
+        ->where([
+            ['bookings.time',$time],
+            ['bookings.date',$today],
+        ])
+        ->pluck('employees.name');
+
+        for ($i=0; $i < count($cekEmp); $i++) {
+            array_push($empName, $cekEmp[$i]);
+        }
+        
         $emp = Employee::where('position','Teknisi')
-        ->orderBy('name','asc')->get();
+        ->whereNotIn('name', $empName)
+        ->orderBy('name','asc')
+        ->get();
+        
         $countEmp = Employee::where('position','Teknisi')
         ->count();
 
@@ -248,6 +268,7 @@ class DashboardController extends Controller
         $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
         ->join('employees','work_orders.employee_id','=','employees.id')
         ->where('bookings.status','selesai')
+        ->orderBy('bookings.date','desc')
         ->get();
 
         return view('admin.work-finished', compact('date','data'));
@@ -395,6 +416,16 @@ class DashboardController extends Controller
         }
         
         return view('admin.report-search', compact('date','data','start','end','status','service'));
+    }
+
+    public function changeEstimation(Request $request, $id){
+        Booking::where('id',$id)
+        ->update([
+            'estimation' => $request->estimation,
+        ]);
+
+        toast('Yay! berhasil ubah estimasi', 'success');
+        return redirect()->route('admin.work-order');
     }
     /** END Admin */
 }

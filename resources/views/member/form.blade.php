@@ -45,6 +45,21 @@
             color: #c2c2c2;
         }
 
+        .input-group{
+            position: relative;
+        }
+
+        #otherBrand,
+        #pilihBrand,
+        #otherType,
+        #pilihType{
+            position: absolute;
+            right: 0;
+            background-color: #cc1616;
+            color: #fff;
+            font-weight: bold;
+            padding: 7px;
+        }
     </style>
 @endpush
 
@@ -109,11 +124,86 @@
                     </div>
                     <div class="col-md-4 form-group">
                         <label for="">Brand Mobil</label>
-                        <input type="text" class="form-control" name="brand" placeholder="Cth: Toyota" required @if($phone) autofocus @endif>
+                        <div class="input-group">
+                        <select name="brand" id="brandSelect" class="form-control" @if($phone) autofocus @endif required>
+                            <option value="Toyota">Toyota</option>
+                            <option value="Daihatsu">Daihatsu</option>
+                            <option value="Honda">Honda</option>
+                            <option value="Suzuki">Suzuki</option>
+                            <option value="Mitsubishi">Mitsubishi</option>
+                            <option value="Nissan">Nissan</option>
+                            <option value="Wuling">Wuling</option>
+                            <option value="Mazda">Mazda</option>
+                            <option value="Datsun">Datsun</option>
+                            <option value="Hyundai">Hyundai</option>
+                        </select>
+                        <input type="text" id="brandInput" class="form-control" placeholder="Cth: Toyota" @if($phone) autofocus @endif hidden>
+                        <a href="#" id="otherBrand">Lainnya</a>
+                        <a href="#" id="pilihBrand" hidden>Pilih Brand</a>
+                        </div>
                     </div>
                     <div class="col-md-4 form-group mt-3 mt-md-0">
                         <label for="">Tipe Mobil</label>
-                        <input type="text" class="form-control" name="type" placeholder="Cth: Avanza" required>
+                        <div class="input-group">
+                        <select name="type" id="typeSelect" class="form-control" required>
+                            <option value="Raize">Raize</option>
+                            <option value="Avanza">Avanza</option>
+                            <option value="Yaris">Yaris</option>
+                            <option value="Veloz">Veloz</option>
+                            <option value="Agya">Agya</option>
+                            <option value="Calya">Calya</option>
+                            <option value="Rocky">Rocky</option>
+                            <option value="Ayla">Ayla</option>
+                            <option value="Sigra">Sigra</option>
+                            <option value="Xenia">Xenia</option>
+                            <option value="Terios">Terios</option>
+                            <option value="Grand Max">Grand Max</option>
+                            <option value="Brio">Brio</option>
+                            <option value="BR-V">BR-V</option>
+                            <option value="HR-V">HR-V</option>
+                            <option value="Jazz">Jazz</option>
+                            <option value="Mobilio">Mobilio</option>
+                            <option value="Civic">Civic</option>
+                            <option value="Ertiga">Ertiga</option>
+                            <option value="Baleno">Baleno</option>
+                            <option value="Ignis">Ignis</option>
+                            <option value="Jimny">Jimny</option>
+                            <option value="APV">APV</option>
+                            <option value="Carry">Carry</option>
+                            <option value="Xpander">Xpander</option>
+                            <option value="Pajero">Pajero</option>
+                            <option value="Outlander">Outlander</option>
+                            <option value="Triton">Triton</option>
+                            <option value="L300">L300</option>
+                            <option value="March">March</option>
+                            <option value="Livina">Livina</option>
+                            <option value="Magnite">Magnite</option>
+                            <option value="Juke">Juke</option>
+                            <option value="Serena">Serena</option>
+                            <option value="Terra">Terra</option>
+                            <option value="Almaz">Almaz</option>
+                            <option value="Air">Air</option>
+                            <option value="Cortez">Cortez</option>
+                            <option value="Confero">Confero</option>
+                            <option value="Formo">Formo</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="CX 5">CX 5</option>
+                            <option value="CX 9">CX 9</option>
+                            <option value="6">6</option>
+                            <option value="CX 8">CX 8</option>
+                            <option value="Go">Go</option>
+                            <option value="Go Plus">Go Plus</option>
+                            <option value="Cross">Cross</option>
+                            <option value="Creta">Creta</option>
+                            <option value="Santa Fe">Santa Fe</option>
+                            <option value="Ioniq">Ioniq</option>
+                            <option value="Staria">Staria</option>
+                        </select>
+                        <input type="text" id="typeInput" class="form-control" placeholder="Cth: Avanza" hidden>
+                        <a href="#" id="otherType">Lainnya</a>
+                        <a href="#" id="pilihType" hidden>Pilih Tipe</a>
+                        </div>
                     </div>
                 </div>
 
@@ -167,3 +257,55 @@
     </div>
 </div>
 @endsection
+
+@push('after-script')
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+    <script>
+        $("#otherBrand").click(function(){
+            $("#brandInput").removeAttr("hidden");
+            $("#brandInput").attr({name:"brand", required:true});
+            $("#brandSelect").attr("hidden","hidden");
+            $("#brandSelect").removeAttr("name");
+            $("#brandSelect").removeAttr("required");
+            $("#otherBrand").attr("hidden","hidden");
+            $("#pilihBrand").removeAttr("hidden");
+        });
+    </script>
+
+    <script>
+        $("#pilihBrand").click(function(){
+            $("#brandSelect").removeAttr("hidden");
+            $("#brandSelect").attr({name:"brand", required:true});
+            $("#brandInput").attr("hidden","hidden");
+            $("#brandInput").removeAttr("name");
+            $("#brandInput").removeAttr("required");
+            $("#pilihBrand").attr("hidden","hidden");
+            $("#otherBrand").removeAttr("hidden");
+        });
+    </script>
+
+    <script>
+        $("#otherType").click(function(){
+            $("#typeInput").removeAttr("hidden");
+            $("#typeInput").attr({name:"type", required:true});
+            $("#typeSelect").attr("hidden","hidden");
+            $("#typeSelect").removeAttr("name");
+            $("#typeSelect").removeAttr("required");
+            $("#otherType").attr("hidden","hidden");
+            $("#pilihType").removeAttr("hidden");
+        });
+    </script>
+
+    <script>
+        $("#pilihType").click(function(){
+            $("#typeSelect").removeAttr("hidden");
+            $("#typeSelect").attr({name:"type", required:true});
+            $("#typeInput").attr("hidden","hidden");
+            $("#typeInput").removeAttr("name");
+            $("#typeInput").removeAttr("required");
+            $("#pilihType").attr("hidden","hidden");
+            $("#otherType").removeAttr("hidden");
+        });
+    </script>
+@endpush

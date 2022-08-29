@@ -17,6 +17,7 @@
                     <th>Mobil</th>
                     <th>Plat No</th>
                     <th>No. Rangka</th>
+                    <th>Estimasi</th>
                     <th>Status</th>
                     <th>Aksi</th>
                 </tr>
@@ -33,20 +34,26 @@
                     <td>{{ $o->booking->brand }} {{ $o->booking->type }} | {{ $o->booking->color }} | {{ $o->booking->year }} | {{ $o->booking->transmition }}</td>
                     <td>{{ $o->booking->plate_no }}</td>
                     <td>{{ $o->booking->frame_no }}</td>
+                    <td>Rp {{ number_format($o->booking->estimation, 0, ',', '.')}}</td>
                     <td><span class="{{ ($o->status == 'tertunda') ? 'label-pending' : (($o->status == 'dikerjakan') ? 'label-progress' : 'label-success')  }}">{{ ucwords($o->booking->status) }}</span></td>
                     <td>
                         <a href="{{ route('admin.work-order-finishing',$o->booking->id) }}" class="btn-aksi-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Selesai"> <i class="typcn typcn-tick"></i></a>
+                        <a data-bs-toggle="modal" data-bs-target="#modalEdit{{ $o->booking->id }}" class="btn-aksi-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Estimasi" style="cursor: pointer;"> <i class="typcn typcn-calculator"></i></a>
                     </td>
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="10" style="text-align: center;">Tidak ada data yang tersedia</td>
+                    <td colspan="11" style="text-align: center;">Tidak ada data yang tersedia</td>
                 </tr>
                 @endforelse
             </tbody>
         </table>
     </div><!-- table-responsive -->
 </div>
+
+@foreach($data as $o)
+    @include('component.modal-edit')
+@endforeach
 
 @push('after-script')
 <script>
