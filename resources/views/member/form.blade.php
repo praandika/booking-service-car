@@ -219,7 +219,14 @@
                     </div>
                     <div class="col-md-4 form-group">
                         <label for="">Tahun Mobil</label>
-                        <input type="text" class="form-control" name="year" placeholder="Cth: 2022" required>
+                        <select name="year" id="typeSelect" class="form-control" required>
+                        {{ $last= date('Y')-120 }}
+                        {{ $now = date('Y') }}
+
+                        @for ($i = $now; $i >= $last; $i--)
+                            <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                        </select>
                     </div>
                 </div>
 
@@ -260,6 +267,7 @@
 
 @push('after-script')
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     <script>
         $("#otherBrand").click(function(){
