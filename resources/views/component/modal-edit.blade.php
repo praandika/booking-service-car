@@ -53,7 +53,8 @@
                         </div>
                         <div class="col-md-12 form-group mt-3 mt-md-0">
                             <label for="" style="font-weight: bold; color: #cc1616;">Ganti Estimasi</label>
-                            <input type="text" name="estimation" class="form-control" required autofocus>
+                            <input type="number" name="estimation" data-bs-toggle="tooltip" data-bs-placement="top" title="Masukan nomor saja" class="form-control" required autofocus>
+                            <label style="font-size: 12px; font-weight:bold;">*Masukan nomor saja</label>
                         </div>
                         <!-- <div class="col-md-12 form-group mt-3 mt-md-0">
                             <label for="">Posisi</label>
