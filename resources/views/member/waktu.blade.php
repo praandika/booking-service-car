@@ -15,12 +15,29 @@
             border: 2px solid #cc1616;
             color: #000;
             background: transparent;
-            }
+        }
 
-            .btn-booking:hover {
+        .btn-booking:hover {
             background: #cc1616;
             border: 2px solid #cc1616;
             color: #fff;
+            
+        }
+
+        .btn-disabled{
+            font-family: "Raleway", sans-serif;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 1px;
+            display: inline-block;
+            padding: 10px 28px;
+            transition: 0.5s;
+            margin-top: 10px;
+            border: 2px solid #242424;
+            color: #cc1616;
+            background: #242424;
+            cursor: no-drop;
         }
     </style>
 @endpush
@@ -45,7 +62,11 @@
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
                         <input type="hidden" value="{{ $jemput }}" name="jemput">
                         <input type="hidden" value="{{ $paket }}" name="paket">
+                        @if($time09 >= 3)
+                        <a href="#" class="btn-disabled">Full Booked</a>
+                        @else
                         <button class="btn-booking">Booking</button>
+                        @endif
                     </form>
                 </div>
             </div>
@@ -61,7 +82,11 @@
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
                         <input type="hidden" value="{{ $jemput }}" name="jemput">
                         <input type="hidden" value="{{ $paket }}" name="paket">
+                        @if($time10 >= 3)
+                        <a href="#" class="btn-disabled">Full Booked</a>
+                        @else
                         <button class="btn-booking">Booking</button>
+                        @endif
                     </form>
                 </div>
             </div>
@@ -77,7 +102,11 @@
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
                         <input type="hidden" value="{{ $jemput }}" name="jemput">
                         <input type="hidden" value="{{ $paket }}" name="paket">
+                        @if($time11 >= 3)
+                        <a href="#" class="btn-disabled">Full Booked</a>
+                        @else
                         <button class="btn-booking">Booking</button>
+                        @endif
                     </form>
                 </div>
             </div>
@@ -95,7 +124,11 @@
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
                         <input type="hidden" value="{{ $jemput }}" name="jemput">
                         <input type="hidden" value="{{ $paket }}" name="paket">
+                        @if($time13 >= 3)
+                        <a href="#" class="btn-disabled">Full Booked</a>
+                        @else
                         <button class="btn-booking">Booking</button>
+                        @endif
                     </form>
                 </div>
             </div>
@@ -111,7 +144,11 @@
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
                         <input type="hidden" value="{{ $jemput }}" name="jemput">
                         <input type="hidden" value="{{ $paket }}" name="paket">
+                        @if($time14 >= 3)
+                        <a href="#" class="btn-disabled">Full Booked</a>
+                        @else
                         <button class="btn-booking">Booking</button>
+                        @endif
                     </form>
                 </div>
             </div>
@@ -127,7 +164,11 @@
                         <input type="hidden" value="{{ $tanggal }}" name="tanggal">
                         <input type="hidden" value="{{ $jemput }}" name="jemput">
                         <input type="hidden" value="{{ $paket }}" name="paket">
+                        @if($time15 >= 3)
+                        <a href="#" class="btn-disabled">Full Booked</a>
+                        @else
                         <button class="btn-booking">Booking</button>
+                        @endif
                     </form>
                 </div>
             </div>

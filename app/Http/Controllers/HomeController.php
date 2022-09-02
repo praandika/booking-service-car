@@ -57,7 +57,38 @@ class HomeController extends Controller
         $tanggal = $request->tanggal;
         $jemput = $request->jemput;
         $paket = $request->paket;
-        return view('member.waktu', compact('tanggal','layanan','jemput','paket'));
+        $time09 = Booking::where([
+            ['package',$paket],
+            ['date',$tanggal],
+            ['time','09:00:00']
+        ])->count();
+        $time10 = Booking::where([
+            ['package',$paket],
+            ['date',$tanggal],
+            ['time','10:00:00']
+        ])->count();
+        $time11 = Booking::where([
+            ['package',$paket],
+            ['date',$tanggal],
+            ['time','11:00:00']
+        ])->count();
+        $time13 = Booking::where([
+            ['package',$paket],
+            ['date',$tanggal],
+            ['time','13:00:00']
+        ])->count();
+        $time14 = Booking::where([
+            ['package',$paket],
+            ['date',$tanggal],
+            ['time','14:00:00']
+        ])->count();
+        $time15 = Booking::where([
+            ['package',$paket],
+            ['date',$tanggal],
+            ['time','15:00:00']
+        ])->count();
+        
+        return view('member.waktu', compact('tanggal','layanan','jemput','paket','time09','time10','time11','time13','time14','time15'));
     }
 
     public function form(Request $request){
