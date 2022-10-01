@@ -413,7 +413,10 @@ class DashboardController extends Controller
                 ->whereBetween('bookings.date',[$request->start, $request->end])
                 ->where('employees.id',$request->teknisi)
                 ->get();
-                $teknisi = Employee::where('id',$request->teknisi)->get();
+                $teknisiData = Employee::where('id',$request->teknisi)->get();
+                foreach ($teknisiData as $o) {
+                    $teknisi = $o->name;
+                }
             } else {
                 $data = Booking::whereBetween('date',[$request->start, $request->end])->get();
                 $teknisi = 'Tidak ada teknisi';
@@ -430,7 +433,10 @@ class DashboardController extends Controller
                     ['employees.id',$request->teknisi],
                 ])
                 ->get();
-                $teknisi = Employee::where('id',$request->teknisi)->get();
+                $teknisiData = Employee::where('id',$request->teknisi)->get();
+                foreach ($teknisiData as $o) {
+                    $teknisi = $o->name;
+                }
             } else {
                 $data = Booking::whereBetween('date',[$request->start, $request->end])
                 ->where('service',$request->service)
@@ -448,7 +454,10 @@ class DashboardController extends Controller
                     ['employees.id',$request->teknisi],
                 ])
                 ->get();
-                $teknisi = Employee::where('id',$request->teknisi)->get();
+                $teknisiData = Employee::where('id',$request->teknisi)->get();
+                foreach ($teknisiData as $o) {
+                    $teknisi = $o->name;
+                }
             } else {
                 $data = Booking::whereBetween('date',[$request->start, $request->end])
                 ->where('status',$request->status)
@@ -467,6 +476,10 @@ class DashboardController extends Controller
                     ['employees.id',$request->teknisi],
                 ])
                 ->get();
+                $teknisiData = Employee::where('id',$request->teknisi)->get();
+                foreach ($teknisiData as $o) {
+                    $teknisi = $o->name;
+                }
             } else {
                 $data = Booking::whereBetween('date',[$request->start, $request->end])
                 ->where([

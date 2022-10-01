@@ -10,9 +10,7 @@
         <div class="col-md-3 mt-3 mt-md-0">
             <label for="">Pilih Teknisi</label>
             <select name="teknisi" id="" class="form-control">
-                @foreach($teknisi as $c)
-                <option selected>{{ $c->name }}</option>
-                @endforeach
+                <option selected>{{ $teknisi }}</option>
                 <option disabled>---------------------</option>
                 
                 @forelse($employee as $a)
@@ -62,7 +60,11 @@
             <button type="submit"
                 style="position: absolute; bottom: 0px; right: -28px; padding: 8px 15px; border:none; background-color: green; color: #ffffff;"><i
                     class="fa fa-search"></i> </button>
-            <a href="{{ url('print-report/'.$start.'/'.$end.'/'.$service.'/'.$status) }}" style="position: absolute; bottom: 0px; right: -165px; padding: 8px 15px; border:none; background-color: blue; color: #ffffff;"><i class="far fa-file-pdf"></i> Export to PDF</a>
+            @if($type == 'teknisi')
+            <a href="{{ url('print-report-teknisi/'.$start.'/'.$end.'/'.$service.'/'.$status.'/'.$teknisi) }}" style="position: absolute; bottom: 0px; right: -165px; padding: 8px 15px; border:none; background-color: blue; color: #ffffff;"><i class="far fa-file-pdf"></i> Export to PDF</a>
+            @else
+            <a href="{{ url('print-report/'.$start.'/'.$end.'/'.$service.'/'.$status.'/'.$type) }}" style="position: absolute; bottom: 0px; right: -165px; padding: 8px 15px; border:none; background-color: blue; color: #ffffff;"><i class="far fa-file-pdf"></i> Export to PDF</a>
+            @endif
         </div>
     </div>
 </form>
@@ -154,7 +156,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6" style="text-align: center;" id="cari" onclick="focus()"><p style="cursor: pointer;">Data @foreach($teknisi as $b) {{ $b->name }} @endforeach tidak tersedia</p></td>
+                    <td colspan="6" style="text-align: center;" id="cari" onclick="focus()"><p style="cursor: pointer;">Data {{ $teknisi }} tidak tersedia</p></td>
                 </tr>
                 @endforelse
             </tbody>

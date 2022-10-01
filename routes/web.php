@@ -60,5 +60,6 @@ Route::post('admin/change-estimation/{id}',[DashboardController::class, 'changeE
 
 /** PRINT */
 Route::get('print/{id}',[PDFController::class, 'printNota'])->name('admin.print-nota');
-Route::get('print-report/{start}/{end}/{service}/{status}',[PDFController::class, 'printReport'])->name('admin.print-report');
+Route::get('print-report/{start}/{end}/{service}/{status}/{type}',[PDFController::class, 'printReport'])->name('admin.print-report');
+Route::get('print-report-teknisi/{start}/{end}/{service}/{status}/{teknisi}',[PDFController::class, 'printReportTeknisi'])->name('admin.print-report-teknisi');
 /** END PRINT */

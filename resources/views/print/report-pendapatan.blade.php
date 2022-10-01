@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Booking</title>
+    <title>Laporan Pendapatan</title>
 
     <style>
         * {
@@ -115,7 +115,7 @@
 <body>
     <center>
         <h2 class="judul">Laporan</h2>
-        <h4>Booking Service Motohid Car Repair</h4>
+        <h4>Pendapatan Motohid Car Repair</h4>
         <hr>
     </center>
 
@@ -139,10 +139,9 @@
             <tr class="data">
                 <th>No</th>
                 <th>Pelanggan</th>
-                <th>Tanggal / Waktu Booking</th>
+                <th>Tanggal / Waktu</th>
                 <th>Service</th>
-                <th>Mobil</th>
-                <th>Estimasi Biaya</th>
+                <th>Pendapatan</th>
             </tr>
         </thead>
         <tbody>
@@ -153,12 +152,11 @@
                 <td>{{ $o->user->name }} | {{ $o->user->phone }}</td>
                 <td>{{ $o->date }} | {{ $o->time }}</td>
                 <td>{{ $o->service }} | {{ $o->package }}</td>
-                <td>{{ $o->brand }} | {{ $o->type }} | {{ $o->plate_no }}</td>
                 <td style="width: 120px; text-align: right;">Rp {{ number_format($o->estimation, 0, ',', '.')}}</td>
             </tr>
             @endforeach
             <tr class="total" style="font-weight: bold;">
-                <td colspan="5" style="text-align: right;">Total Estimasi Biaya</td>
+                <td colspan="4" style="text-align: right;">Total Pendapatan</td>
                 <td style="text-align: right;">Rp {{ number_format($estimasiBiaya, 0, ',', '.')}}</td>
             </tr>
         </tbody>

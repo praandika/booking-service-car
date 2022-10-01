@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\WorkOrder;
 use GuzzleHttp\Psr7\Request;
 use PDF;
 use Illuminate\Support\Carbon;
@@ -20,7 +21,7 @@ class PDFController extends Controller
         return $pdf->download('nota_'.$ref.'.pdf');
     }
 
-    public function printReport($start, $end, $service, $status){
+    public function printReport($start, $end, $service, $status, $type){
         $date = Carbon::now('GMT+8')->format('Y-m-d H:i:s');
         
         if (($status == "semua" ) && ($service == "semua")) {
@@ -58,16 +59,138 @@ class PDFController extends Controller
             ->sum('estimation');
         }
 
-        $pdf = PDF::loadView('print.report', compact('data','date','estimasiBiaya','start','end','status','service'));
+        if ($type == 'booking') {
+            $pdf = PDF::loadView('print.report', compact('data','date','estimasiBiaya','start','end','status','service'));
+
+            if (($status == "" ) && ($service == "")) {
+                return $pdf->download('laporan_booking'.$start.'-'.$end.'.pdf');
+            } elseif($status == "") {
+                return $pdf->download('laporan_booking'.$start.'-'.$end.'_'.$service.'.pdf');
+            } elseif($service == "") {
+                return $pdf->download('laporan_booking'.$start.'-'.$end.'_'.$status.'.pdf');
+            } else {
+                return $pdf->download('laporan_booking'.$start.'-'.$end.'_'.$service.'_'.$status.'.pdf');
+            }
+
+        } elseif($type == 'pendapatan') {
+            $pdf = PDF::loadView('print.report-pendapatan', compact('data','date','estimasiBiaya','start','end','status','service'));
+
+            if (($status == "" ) && ($service == "")) {
+                return $pdf->download('laporan_pendapatan'.$start.'-'.$end.'.pdf');
+            } elseif($status == "") {
+                return $pdf->download('laporan_pendapatan'.$start.'-'.$end.'_'.$service.'.pdf');
+            } elseif($service == "") {
+                return $pdf->download('laporan_pendapatan'.$start.'-'.$end.'_'.$status.'.pdf');
+            } else {
+                return $pdf->download('laporan_pendapatan'.$start.'-'.$end.'_'.$service.'_'.$status.'.pdf');
+            }
+        }
+        
+        
+    }
+
+    public function printReportTeknisi($start, $end, $service, $status, $teknisi){
+        $date = Carbon::now('GMT+8')->format('Y-m-d H:i:s');
+        
+        if (($status == "semua" ) && ($service == "semua")) {
+            $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
+            ->join('employees','work_orders.employee_id','=','employees.id')
+            ->whereBetween('bookings.date',[$start, $end])
+            ->where('employees.name',$teknisi)
+            ->get();
+
+            $estimasiBiaya = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
+            ->join('employees','work_orders.employee_id','=','employees.id')
+            ->whereBetween('bookings.date',[$start, $end])
+            ->where('employees.name',$teknisi)
+            ->sum('bookings.estimation');
+
+            foreach($estimasiBiaya as $o){
+                $reward = ($o->booking->estimation * 0.1);
+            }
+
+        } elseif($status == "semua") {
+            $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
+            ->join('employees','work_orders.employee_id','=','employees.id')
+            ->whereBetween('bookings.date',[$start, $end])
+            ->where([
+                ['employees.name',$teknisi],
+                ['service',$service],
+            ])
+            ->get();
+
+            $estimasiBiaya = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
+            ->join('employees','work_orders.employee_id','=','employees.id')
+            ->whereBetween('bookings.date',[$start, $end])
+            ->where([
+                ['employees.name',$teknisi],
+                ['service',$service],
+            ])
+            ->sum('bookings.estimation');
+
+            foreach($estimasiBiaya as $o){
+                $reward = ($o->booking->estimation * 0.1);
+            }
+            
+        } elseif($service == "semua") {
+            $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
+            ->join('employees','work_orders.employee_id','=','employees.id')
+            ->whereBetween('bookings.date',[$start, $end])
+            ->where([
+                ['employees.name',$teknisi],
+                ['status',$status],
+            ])
+            ->get();
+
+            $estimasiBiaya = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
+            ->join('employees','work_orders.employee_id','=','employees.id')
+            ->whereBetween('bookings.date',[$start, $end])
+            ->where([
+                ['employees.name',$teknisi],
+                ['status',$status],
+            ])
+            ->sum('bookings.estimation');
+
+            foreach($estimasiBiaya as $o){
+                $reward = ($o->booking->estimation * 0.1);
+            }
+
+        } else {
+            $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
+            ->join('employees','work_orders.employee_id','=','employees.id')
+            ->whereBetween('bookings.date',[$start, $end])
+            ->where([
+                ['employees.name',$teknisi],
+                ['status',$status],
+                ['service',$service],
+            ])
+            ->get();
+
+            $estimasiBiaya =  WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
+            ->join('employees','work_orders.employee_id','=','employees.id')
+            ->whereBetween('bookings.date',[$start, $end])
+            ->where([
+                ['employees.name',$teknisi],
+                ['status',$status],
+                ['service',$service],
+            ])
+            ->sum('bookings.estimation');
+
+            foreach($estimasiBiaya as $o){
+                $reward = ($o->booking->estimation * 0.1);
+            }
+        }
+
+        $pdf = PDF::loadView('print.report-teknisi', compact('data','date','reward','start','end','status','service'));
 
         if (($status == "" ) && ($service == "")) {
-            return $pdf->download('laporan_'.$start.'-'.$end.'.pdf');
+            return $pdf->download('laporan_teknisi'.$teknisi.'-'.$start.'-'.$end.'.pdf');
         } elseif($status == "") {
-            return $pdf->download('laporan_'.$start.'-'.$end.'_'.$service.'.pdf');
+            return $pdf->download('laporan_teknisi'.$teknisi.'-'.$start.'-'.$end.'_'.$service.'.pdf');
         } elseif($service == "") {
-            return $pdf->download('laporan_'.$start.'-'.$end.'_'.$status.'.pdf');
+            return $pdf->download('laporan_teknisi'.$teknisi.'-'.$start.'-'.$end.'_'.$status.'.pdf');
         } else {
-            return $pdf->download('laporan_'.$start.'-'.$end.'_'.$service.'_'.$status.'.pdf');
+            return $pdf->download('laporan_teknisi'.$teknisi.'-'.$start.'-'.$end.'_'.$service.'_'.$status.'.pdf');
         }
     }
 }

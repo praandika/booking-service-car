@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Booking</title>
+    <title>Laporan Teknisi</title>
 
     <style>
         * {
@@ -115,7 +115,7 @@
 <body>
     <center>
         <h2 class="judul">Laporan</h2>
-        <h4>Booking Service Motohid Car Repair</h4>
+        <h4>Teknisi $teknisi</h4>
         <hr>
     </center>
 
@@ -138,11 +138,10 @@
         <thead>
             <tr class="data">
                 <th>No</th>
-                <th>Pelanggan</th>
-                <th>Tanggal / Waktu Booking</th>
-                <th>Service</th>
                 <th>Mobil</th>
-                <th>Estimasi Biaya</th>
+                <th>Tanggal / Waktu</th>
+                <th>Service</th>
+                <th>Reward</th>
             </tr>
         </thead>
         <tbody>
@@ -150,16 +149,15 @@
             @foreach($data as $o)
             <tr class="data">
                 <td>{{ $no++ }}</td>
-                <td>{{ $o->user->name }} | {{ $o->user->phone }}</td>
-                <td>{{ $o->date }} | {{ $o->time }}</td>
-                <td>{{ $o->service }} | {{ $o->package }}</td>
-                <td>{{ $o->brand }} | {{ $o->type }} | {{ $o->plate_no }}</td>
-                <td style="width: 120px; text-align: right;">Rp {{ number_format($o->estimation, 0, ',', '.')}}</td>
+                <td>{{ $o->booking->brand }} | {{ $o->booking->type }} | {{ $o->booking->plate_no }}</td>
+                <td>{{ $o->booking->date }} | {{ $o->booking->time }}</td>
+                <td>{{ $o->booking->service }} | {{ $o->booking->package }}</td>
+                <td style="width: 120px; text-align: right;">Rp {{ ($o->booking->estimation) * 0.1 }}</td>
             </tr>
             @endforeach
             <tr class="total" style="font-weight: bold;">
-                <td colspan="5" style="text-align: right;">Total Estimasi Biaya</td>
-                <td style="text-align: right;">Rp {{ number_format($estimasiBiaya, 0, ',', '.')}}</td>
+                <td colspan="4" style="text-align: right;">Total Reward</td>
+                <td style="text-align: right;">Rp {{ number_format($reward, 0, ',', '.')}}</td>
             </tr>
         </tbody>
     </table>
