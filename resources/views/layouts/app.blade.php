@@ -169,6 +169,7 @@
                     <div class="col-lg-4 col-md-6 footer-newsletter">
                         <h4>Book A Service</h4>
                         <p>Motohid Car Repair melayani service mesin dan body repair mobil kesayangan Anda. Booking service sekarang</p>
+                        @if(Auth::check())
                         <a href="{{ route('member.booking') }}"
                             style="
                             background: #cc1616;
@@ -179,6 +180,7 @@
                             ">
                             Booking Sekarang
                         </a>
+                        @endif
                     </div>
 
                 </div>

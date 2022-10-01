@@ -1,10 +1,31 @@
 @extends('layouts.admin')
-@section('title','Cari Laporan')
-@section('dash-title','Cari Laporan')
+@section('title','Cari '.$report)
+@section('dash-title','Cari '.$report)
 
 @section('content')
-<form action="{{ route('admin.report-search') }}" method="post">
+<form action="{{ url('admin/report-search',$type) }}" method="post">
     @csrf
+    @if($type == 'teknisi')
+    <div class="row">
+        <div class="col-md-3 mt-3 mt-md-0">
+            <label for="">Pilih Teknisi</label>
+            <select name="teknisi" id="" class="form-control">
+                @foreach($teknisi as $c)
+                <option selected>{{ $c->name }}</option>
+                @endforeach
+                <option disabled>---------------------</option>
+                
+                @forelse($employee as $a)
+                <option value="{{ $a->id }}">{{ $a->name }}</option>
+                @empty
+                <option disabled>Tidak ada teknisi</option>
+                @endforelse
+            </select>
+        </div>
+    </div>
+    <br>
+    @endif
+
     <div class="row">
         <div class="col-md-3 mt-3 mt-md-0">
             <label for="">Tanggal Awal</label>
@@ -49,6 +70,7 @@
 <div class="row" style="margin-top: 20px;">
     <div class="table-responsive">
         <table class="table table-hover table-bordered mg-b-0" id="TableData">
+        @if($type == 'booking')
             <thead>
                 <tr>
                     <th>No</th>
@@ -76,10 +98,68 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="8" style="text-align: center;" id="cari" onclick="focus()"><p style="cursor: pointer;">Cari Laporan</p></td>
+                    <td colspan="8" style="text-align: center;" id="cari" onclick="focus()"><p style="cursor: pointer;">Tidak ada data tersedia</p></td>
                 </tr>
                 @endforelse
             </tbody>
+        @elseif($type == 'pendapatan')
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Pelanggan</th>
+                    <th>Tanggal / Waktu</th>
+                    <th>Service</th>
+                    <th>Pendapatan</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php($no = 1)
+                @forelse($data as $o)
+                <tr>
+                    <th scope="row">{{ $no++ }}</th>
+                    <th>{{ $o->user->name }} | {{ $o->user->phone }}</th>
+                    <td>{{ Carbon\Carbon::parse($o->date)->translatedFormat('d F Y') }} | {{ $o->time }}</td>
+                    <td>{{ $o->service }} | {{ $o->package }}</td>
+                    <td>Rp {{ number_format($o->estimation, 0, ',', '.')}}</td>
+                    <td><span class="{{ ($o->status == 'tertunda') ? 'label-pending' : (($o->status == 'dikerjakan') ? 'label-progress' : 'label-success')  }}">{{ ucwords($o->status) }}</span></td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="6" style="text-align: center;" id="cari" onclick="focus()"><p style="cursor: pointer;">Tidak ada data tersedia</p></td>
+                </tr>
+                @endforelse
+            </tbody>
+        @elseif($type == 'teknisi')
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Teknisi</th>
+                    <th>Mobil</th>
+                    <th>Tanggal / Waktu</th>
+                    <th>Service</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php($no = 1)
+                @forelse($data as $o)
+                <tr>
+                    <th scope="row">{{ $no++ }}</th>
+                    <th>{{ $o->employee->name }}</th>
+                    <td>{{ $o->booking->brand }} {{ $o->booking->type }} | {{ $o->booking->color }} | {{ $o->booking->year }} | {{ $o->booking->transmition }}</td>
+                    <td>{{ Carbon\Carbon::parse($o->booking->date)->translatedFormat('d F Y') }} | {{ $o->booking->time }}</td>
+                    <td>{{ $o->booking->service }} | {{ $o->booking->package }}</td>
+                    <td><span class="{{ ($o->booking->status == 'tertunda') ? 'label-pending' : (($o->booking->status == 'dikerjakan') ? 'label-progress' : 'label-success')  }}">{{ ucwords($o->status) }}</span></td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="6" style="text-align: center;" id="cari" onclick="focus()"><p style="cursor: pointer;">Data @foreach($teknisi as $b) {{ $b->name }} @endforeach tidak tersedia</p></td>
+                </tr>
+                @endforelse
+            </tbody>
+        @else
+        @endif
         </table>
     </div><!-- table-responsive -->
 </div>

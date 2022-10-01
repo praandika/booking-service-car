@@ -22,8 +22,13 @@
             Teknisi</a>
     </li>
     <li class="nav-item {{ Route::is('admin.report') ? 'active' : '' }}">
-        <a href="{{ route('admin.report') }}" class="nav-link"><i class="typcn typcn-document"></i>
+        <a href="" class="nav-link with-sub"><i class="typcn typcn-document"></i>
             Laporan</a>
+        <nav class="az-menu-sub">
+            <a href="{{ url('admin/report/booking') }}" class="nav-link">Laporan Booking</a>
+            <a href="{{ url('admin/report/pendapatan') }}" class="nav-link">Laporan Pendapatan</a>
+            <a href="{{ url('admin/report/teknisi') }}" class="nav-link">Laporan Teknisi</a>
+        </nav>    
     </li>
     @endif
     @if(Auth::user()->access == 'customer')

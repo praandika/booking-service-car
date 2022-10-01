@@ -53,8 +53,8 @@ Route::post('admin/employee-update/{id}',[DashboardController::class, 'employeeU
 Route::get('admin/booking-all',[DashboardController::class, 'showBookingAll'])->name('admin.booking-all');
 Route::get('admin/booking-service',[DashboardController::class, 'showBookingService'])->name('admin.booking-service');
 Route::get('admin/booking-repair',[DashboardController::class, 'showBookingRepair'])->name('admin.booking-repair');
-Route::get('admin/report',[DashboardController::class, 'showReport'])->name('admin.report');
-Route::post('admin/report-search',[DashboardController::class, 'reportSearch'])->name('admin.report-search');
+Route::get('admin/report/{type}',[DashboardController::class, 'showReport'])->name('admin.report');
+Route::post('admin/report-search/{type}',[DashboardController::class, 'reportSearch'])->name('admin.report-search');
 Route::post('admin/change-estimation/{id}',[DashboardController::class, 'changeEstimation'])->name('admin.change-estimation');
 /** END Admin Route */
 

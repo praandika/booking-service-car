@@ -6,7 +6,9 @@
 
 @section('content')
 @include('section.client')
-@include('section.cta')
+@if(Auth::check())
+    @include('section.cta')
+@endif
 @include('section.services')
 @include('section.pricing')
 @include('section.about')

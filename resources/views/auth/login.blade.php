@@ -30,10 +30,10 @@
 
                 <div class="form-group">
                     <label>Email / Username</label>
-                    <input type="text" class="form-control @error('username') is-invalid @enderror"
+                    <input type="text" class="form-control @error('email') is-invalid @enderror"
                         placeholder="Masukkan email / username Anda" name="username" value="{{ old('username') }}" required
                         autocomplete="username" autofocus>
-                    @error('username')
+                    @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>

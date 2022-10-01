@@ -20,9 +20,11 @@
                         <li>Ganti Oli</li>
                         <li>Tune Up</li>
                     </ul>
+                    @if(Auth::check())
                     <div class="btn-wrap">
                         <a href="{{ url('member/booking-paket/service-mesin') }}" class="btn-buy">Booking</a>
                     </div>
+                    @endif
                 </div>
             </div>
 
@@ -40,9 +42,11 @@
                         <li>Kap Mesin & Bagasi</li>
                         <li>Atap Mobil</li>
                     </ul>
+                    @if(Auth::check())
                     <div class="btn-wrap">
                         <a href="{{ url('member/booking-paket/body-repair') }}" class="btn-buy">Booking</a>
                     </div>
+                    @endif
                 </div>
             </div>
 
@@ -54,9 +58,11 @@
                         <li>Servis Mesin atau Body Repair</li>
                         <li>Layanan Jemput Mobil</li>
                     </ul>
+                    @if(Auth::check())
                     <div class="btn-wrap">
                         <a href="{{ url('member/booking/1') }}" class="btn-buy">Booking</a>
                     </div>
+                    @endif
                 </div>
             </div>
 

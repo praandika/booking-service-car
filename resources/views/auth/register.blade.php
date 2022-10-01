@@ -48,6 +48,18 @@
                     @enderror
                 </div><!-- form-group -->
                 <div class="form-group">
+                    <label>Alamat</label>
+                    <input type="text" class="form-control @error('address') is-invalid @enderror"
+                        placeholder="Masukkan alamat Anda" name="address" value="{{ old('address') }}"
+                        required autocomplete="address" autofocus>
+                </div><!-- form-group -->
+                <div class="form-group">
+                    <label>Whatsapp / Phone</label>
+                    <input type="number" class="form-control @error('phone') is-invalid @enderror"
+                        placeholder="Masukkan nomor Whatsapp / HP Anda" name="phone" value="{{ old('phone') }}"
+                        required autocomplete="phone" autofocus>
+                </div><!-- form-group -->
+                <div class="form-group">
                     <label>Password</label>
                     <input type="password" class="form-control @error('password') is-invalid @enderror"
                         placeholder="Masukkan kata sandi Anda" name="password" required autocomplete="new-password">

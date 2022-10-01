@@ -1,11 +1,26 @@
 @extends('layouts.admin')
-@section('title','Laporan')
-@section('dash-title','Laporan')
+@section('title',$report)
+@section('dash-title',$report)
 
 @section('content')
 
-<form action="{{ route('admin.report-search') }}" method="post">
+<form action="{{ url('admin/report-search',$type) }}" method="post">
     @csrf
+    @if($type == 'teknisi')
+    <div class="row mb-3">
+        <div class="col-md-3 mt-3 mt-md-0">
+            <label for="">Pilih Teknisi</label>
+            <select name="teknisi" id="" class="form-control">
+                @forelse($employee as $a)
+                <option value="{{ $a->id }}">{{ $a->name }}</option>
+                @empty
+                <option disabled>Tidak ada teknisi</option>
+                @endforelse
+            </select>
+        </div>
+    </div>
+    @endif
+
     <div class="row">
         <div class="col-md-3 mt-3 mt-md-0">
             <label for="">Tanggal Awal</label>
@@ -42,6 +57,7 @@
     <div class="table-responsive">
         <table class="table table-hover table-bordered mg-b-0" id="TableData">
             <thead>
+                @if($type == 'booking')
                 <tr>
                     <th>No</th>
                     <th>Pelanggan</th>
@@ -52,10 +68,33 @@
                     <th>No. Rangka</th>
                     <th>Status</th>
                 </tr>
+                @elseif($type == 'pendapatan')
+                <tr>
+                    <th>No</th>
+                    <th>Pelanggan</th>
+                    <th>Tanggal / Waktu</th>
+                    <th>Service</th>
+                    <th>Pendapatan</th>
+                    <th>Status</th>
+                </tr>
+                @elseif($type == 'teknisi')
+                <tr>
+                    <th>No</th>
+                    <th>Teknisi</th>
+                    <th>Mobil</th>
+                    <th>Tanggal / Waktu</th>
+                    <th>Service</th>
+                    <th>Status</th>
+                </tr>
+                @else
+                <tr>
+                    <th>Error URL</th>
+                </tr>
+                @endif
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="8" style="text-align: center; cursor: pointer;" id="cari">Cari
+                    <td colspan="{{ $type == 'booking' ? '8' : ($type == 'pendapatan' ? '6' : ($type == 'teknisi' ? '6' : '0' )) }}" style="text-align: center; cursor: pointer;" id="cari">Cari
                         Laporan</td>
                 </tr>
             </tbody>

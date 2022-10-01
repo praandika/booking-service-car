@@ -381,41 +381,104 @@ class DashboardController extends Controller
         return view('admin.show-booking', compact('date','data','title','countTertunda','countDikerjakan','countSelesai'));
     }
 
-    public function showReport(){
+    public function showReport($type){
         $date = Carbon::now('GMT+8');
-        return view('admin.report', compact('date'));
+        $report = 'Laporan '.ucwords($type);
+        if ($type == 'teknisi') {
+            $employee = Employee::orderBy('name','asc')->get();
+        } else {
+            $employee = 'no employee';
+        }
+        
+        return view('admin.report', compact('date','report','type','employee'));
     }
 
-    public function reportSearch(Request $request){
+    public function reportSearch(Request $request, $type){
+        if ($type == 'teknisi') {
+            $employee = Employee::orderBy('name','asc')->get();
+        } else {
+            $employee = 'no employee';
+        }
+        
+        $report = 'Laporan '.ucwords($type);
         $start = $request->start;
         $end = $request->end;
         $status = $request->status;
         $service = $request->service;
         $date = Carbon::now('GMT+8');
         if (($request->status == "semua" ) && ($request->service == "semua")) {
-            $data = Booking::whereBetween('date',[$request->start, $request->end])->get();
+            if ($type == 'teknisi') {
+                $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
+                ->join('employees','work_orders.employee_id','=','employees.id')
+                ->whereBetween('bookings.date',[$request->start, $request->end])
+                ->where('employees.id',$request->teknisi)
+                ->get();
+                $teknisi = Employee::where('id',$request->teknisi)->get();
+            } else {
+                $data = Booking::whereBetween('date',[$request->start, $request->end])->get();
+                $teknisi = 'Tidak ada teknisi';
+            }
             $status = 'semua';
             $service = 'semua';
         } elseif($request->status == "semua") {
-            $data = Booking::whereBetween('date',[$request->start, $request->end])
-            ->where('service',$request->service)
-            ->get();
+            if ($type == 'teknisi') {
+                $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
+                ->join('employees','work_orders.employee_id','=','employees.id')
+                ->whereBetween('bookings.date',[$request->start, $request->end])
+                ->where([
+                    ['bookings.service',$request->service],
+                    ['employees.id',$request->teknisi],
+                ])
+                ->get();
+                $teknisi = Employee::where('id',$request->teknisi)->get();
+            } else {
+                $data = Booking::whereBetween('date',[$request->start, $request->end])
+                ->where('service',$request->service)
+                ->get();
+                $teknisi = 'Tidak ada teknisi';
+            }
             $status = 'semua';
         } elseif($request->service == "semua") {
-            $data = Booking::whereBetween('date',[$request->start, $request->end])
-            ->where('status',$request->status)
-            ->get();
+            if ($type == 'teknisi') {
+                $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
+                ->join('employees','work_orders.employee_id','=','employees.id')
+                ->whereBetween('bookings.date',[$request->start, $request->end])
+                ->where([
+                    ['bookings.status',$request->status],
+                    ['employees.id',$request->teknisi],
+                ])
+                ->get();
+                $teknisi = Employee::where('id',$request->teknisi)->get();
+            } else {
+                $data = Booking::whereBetween('date',[$request->start, $request->end])
+                ->where('status',$request->status)
+                ->get();
+                $teknisi = 'Tidak ada teknisi';
+            }
             $service = 'semua';
         } else {
-            $data = Booking::whereBetween('date',[$request->start, $request->end])
-            ->where([
-                ['status',$request->status],
-                ['service',$request->service],
-            ])
-            ->get();
+            if ($type == 'teknisi') {
+                $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
+                ->join('employees','work_orders.employee_id','=','employees.id')
+                ->whereBetween('bookings.date',[$request->start, $request->end])
+                ->where([
+                    ['bookings.status',$request->status],
+                    ['bookings.service',$request->service],
+                    ['employees.id',$request->teknisi],
+                ])
+                ->get();
+            } else {
+                $data = Booking::whereBetween('date',[$request->start, $request->end])
+                ->where([
+                    ['status',$request->status],
+                    ['service',$request->service],
+                ])
+                ->get();
+                $teknisi = 'Tidak ada teknisi';
+            }
         }
         
-        return view('admin.report-search', compact('date','data','start','end','status','service'));
+        return view('admin.report-search', compact('date','data','start','end','status','service','report','type','employee','teknisi'));
     }
 
     public function changeEstimation(Request $request, $id){
