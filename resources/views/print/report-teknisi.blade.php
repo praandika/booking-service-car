@@ -115,7 +115,7 @@
 <body>
     <center>
         <h2 class="judul">Laporan</h2>
-        <h4>Teknisi $teknisi</h4>
+        <h4>Teknisi {{ $teknisi }}</h4>
         <hr>
     </center>
 
@@ -139,6 +139,7 @@
             <tr class="data">
                 <th>No</th>
                 <th>Mobil</th>
+                <th>Pelanggan</th>
                 <th>Tanggal / Waktu</th>
                 <th>Service</th>
                 <th>Reward</th>
@@ -150,14 +151,15 @@
             <tr class="data">
                 <td>{{ $no++ }}</td>
                 <td>{{ $o->booking->brand }} | {{ $o->booking->type }} | {{ $o->booking->plate_no }}</td>
+                <td>{{ $o->booking->user->name }}</td>
                 <td>{{ $o->booking->date }} | {{ $o->booking->time }}</td>
                 <td>{{ $o->booking->service }} | {{ $o->booking->package }}</td>
-                <td style="width: 120px; text-align: right;">Rp {{ ($o->booking->estimation) * 0.1 }}</td>
+                <td style="width: 120px; text-align: right;">Rp {{ number_format(($o->booking->estimation * 0.1), 0, ',', '.') }}</td>
             </tr>
             @endforeach
             <tr class="total" style="font-weight: bold;">
-                <td colspan="4" style="text-align: right;">Total Reward</td>
-                <td style="text-align: right;">Rp {{ number_format($reward, 0, ',', '.')}}</td>
+                <td colspan="5" style="text-align: right;">Total Reward</td>
+                <td style="text-align: right;">Rp {{ number_format(($estimasiBiaya * 0.1), 0, ',', '.')}}</td>
             </tr>
         </tbody>
     </table>

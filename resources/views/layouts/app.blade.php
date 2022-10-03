@@ -66,10 +66,14 @@
                 <ul>
                     @if(Route::is('member.booking') || Route::is('member.goto-tanggal') || Route::is('member.goto-waktu') || Route::is('member.goto-form'))
                     <li><a class="nav-link scrollto" href="{{ route('home') }}">Beranda</a></li>
-                    <li><a class="nav-link scrollto active" href="#cta">Booking</a></li>
+                        @if(Auth::check())
+                        <li><a class="nav-link scrollto active" href="#cta">Booking</a></li>
+                        @endif
                     @else
                     <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
-                    <li><a class="nav-link scrollto" href="#cta">Booking</a></li>
+                        @if(Auth::check())
+                        <li><a class="nav-link scrollto" href="#cta">Booking</a></li>
+                        @endif
                     <li><a class="nav-link scrollto" href="#services">Layanan</a></li>
                     <li><a class="nav-link scrollto " href="#pricing">Harga</a></li>
                     <li><a class="nav-link scrollto" href="#about">Tentang</a></li>

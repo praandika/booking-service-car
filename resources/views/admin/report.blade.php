@@ -60,7 +60,7 @@
                 @if($type == 'booking')
                 <tr>
                     <th>No</th>
-                    <th>Pelanggan</th>
+                    <th>Nama Cust / Phone</th>
                     <th>Tanggal / Waktu</th>
                     <th>Service</th>
                     <th>Mobil</th>
@@ -81,6 +81,7 @@
                 <tr>
                     <th>No</th>
                     <th>Teknisi</th>
+                    <th>Pelanggan</th>
                     <th>Mobil</th>
                     <th>Tanggal / Waktu</th>
                     <th>Service</th>
@@ -94,7 +95,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="{{ $type == 'booking' ? '8' : ($type == 'pendapatan' ? '6' : ($type == 'teknisi' ? '6' : '0' )) }}" style="text-align: center; cursor: pointer;" id="cari">Cari
+                    <td colspan="{{ $type == 'booking' ? '8' : ($type == 'pendapatan' ? '6' : ($type == 'teknisi' ? '7' : '0' )) }}" style="text-align: center; cursor: pointer;" id="cari">Cari
                         Laporan</td>
                 </tr>
             </tbody>

@@ -76,7 +76,7 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Pelanggan</th>
+                    <th>Nama Cust / Phone</th>
                     <th>Tanggal / Waktu</th>
                     <th>Service</th>
                     <th>Mobil</th>
@@ -137,6 +137,7 @@
                 <tr>
                     <th>No</th>
                     <th>Teknisi</th>
+                    <th>Pelanggan</th>
                     <th>Mobil</th>
                     <th>Tanggal / Waktu</th>
                     <th>Service</th>
@@ -149,6 +150,7 @@
                 <tr>
                     <th scope="row">{{ $no++ }}</th>
                     <th>{{ $o->employee->name }}</th>
+                    <th>{{ $o->booking->user->name }}</th>
                     <td>{{ $o->booking->brand }} {{ $o->booking->type }} | {{ $o->booking->color }} | {{ $o->booking->year }} | {{ $o->booking->transmition }}</td>
                     <td>{{ Carbon\Carbon::parse($o->booking->date)->translatedFormat('d F Y') }} | {{ $o->booking->time }}</td>
                     <td>{{ $o->booking->service }} | {{ $o->booking->package }}</td>
@@ -156,7 +158,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6" style="text-align: center;" id="cari" onclick="focus()"><p style="cursor: pointer;">Data {{ $teknisi }} tidak tersedia</p></td>
+                    <td colspan="7" style="text-align: center;" id="cari" onclick="focus()"><p style="cursor: pointer;">Data {{ $teknisi }} tidak tersedia</p></td>
                 </tr>
                 @endforelse
             </tbody>

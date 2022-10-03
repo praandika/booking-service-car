@@ -105,10 +105,6 @@ class PDFController extends Controller
             ->where('employees.name',$teknisi)
             ->sum('bookings.estimation');
 
-            foreach($estimasiBiaya as $o){
-                $reward = ($o->booking->estimation * 0.1);
-            }
-
         } elseif($status == "semua") {
             $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
             ->join('employees','work_orders.employee_id','=','employees.id')
@@ -127,10 +123,6 @@ class PDFController extends Controller
                 ['service',$service],
             ])
             ->sum('bookings.estimation');
-
-            foreach($estimasiBiaya as $o){
-                $reward = ($o->booking->estimation * 0.1);
-            }
             
         } elseif($service == "semua") {
             $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
@@ -150,10 +142,6 @@ class PDFController extends Controller
                 ['status',$status],
             ])
             ->sum('bookings.estimation');
-
-            foreach($estimasiBiaya as $o){
-                $reward = ($o->booking->estimation * 0.1);
-            }
 
         } else {
             $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
@@ -175,22 +163,18 @@ class PDFController extends Controller
                 ['service',$service],
             ])
             ->sum('bookings.estimation');
-
-            foreach($estimasiBiaya as $o){
-                $reward = ($o->booking->estimation * 0.1);
-            }
         }
 
-        $pdf = PDF::loadView('print.report-teknisi', compact('data','date','reward','start','end','status','service'));
+        $pdf = PDF::loadView('print.report-teknisi', compact('data','date','start','end','status','service','estimasiBiaya','teknisi'));
 
         if (($status == "" ) && ($service == "")) {
-            return $pdf->download('laporan_teknisi'.$teknisi.'-'.$start.'-'.$end.'.pdf');
+            return $pdf->download('laporan_teknisi_'.$teknisi.'-'.$start.'-'.$end.'.pdf');
         } elseif($status == "") {
-            return $pdf->download('laporan_teknisi'.$teknisi.'-'.$start.'-'.$end.'_'.$service.'.pdf');
+            return $pdf->download('laporan_teknisi_'.$teknisi.'-'.$start.'-'.$end.'_'.$service.'.pdf');
         } elseif($service == "") {
-            return $pdf->download('laporan_teknisi'.$teknisi.'-'.$start.'-'.$end.'_'.$status.'.pdf');
+            return $pdf->download('laporan_teknisi_'.$teknisi.'-'.$start.'-'.$end.'_'.$status.'.pdf');
         } else {
-            return $pdf->download('laporan_teknisi'.$teknisi.'-'.$start.'-'.$end.'_'.$service.'_'.$status.'.pdf');
+            return $pdf->download('laporan_teknisi_'.$teknisi.'-'.$start.'-'.$end.'_'.$service.'_'.$status.'.pdf');
         }
     }
 }
