@@ -10,7 +10,7 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Pelanggan</th>
+                    <th>Nama Cust / Phone</th>
                     <th>Tanggal / Waktu</th>
                     <th>Service</th>
                     <th>Mobil</th>
@@ -39,7 +39,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="8" style="text-align: center;">Tidak ada data yang tersedia</td>
+                    <td colspan="9" style="text-align: center;">Tidak ada data yang tersedia</td>
                 </tr>
                 @endforelse
             </tbody>

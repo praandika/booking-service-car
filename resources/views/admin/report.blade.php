@@ -6,21 +6,6 @@
 
 <form action="{{ url('admin/report-search',$type) }}" method="post">
     @csrf
-    @if($type == 'teknisi')
-    <div class="row mb-3">
-        <div class="col-md-3 mt-3 mt-md-0">
-            <label for="">Pilih Teknisi</label>
-            <select name="teknisi" id="" class="form-control">
-                @forelse($employee as $a)
-                <option value="{{ $a->id }}">{{ $a->name }}</option>
-                @empty
-                <option disabled>Tidak ada teknisi</option>
-                @endforelse
-            </select>
-        </div>
-    </div>
-    @endif
-
     <div class="row">
         <div class="col-md-3 mt-3 mt-md-0">
             <label for="">Tanggal Awal</label>
@@ -85,6 +70,7 @@
                     <th>Mobil</th>
                     <th>Tanggal / Waktu</th>
                     <th>Service</th>
+                    <th>Reward</th>
                     <th>Status</th>
                 </tr>
                 @else
@@ -95,7 +81,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="{{ $type == 'booking' ? '8' : ($type == 'pendapatan' ? '6' : ($type == 'teknisi' ? '7' : '0' )) }}" style="text-align: center; cursor: pointer;" id="cari">Cari
+                    <td colspan="{{ $type == 'booking' ? '8' : ($type == 'pendapatan' ? '6' : ($type == 'teknisi' ? '8' : '0' )) }}" style="text-align: center; cursor: pointer;" id="cari">Cari
                         Laporan</td>
                 </tr>
             </tbody>

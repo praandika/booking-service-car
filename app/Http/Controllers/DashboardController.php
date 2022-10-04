@@ -394,12 +394,6 @@ class DashboardController extends Controller
     }
 
     public function reportSearch(Request $request, $type){
-        if ($type == 'teknisi') {
-            $employee = Employee::orderBy('name','asc')->get();
-        } else {
-            $employee = 'no employee';
-        }
-        
         $report = 'Laporan '.ucwords($type);
         $start = $request->start;
         $end = $request->end;
@@ -411,15 +405,9 @@ class DashboardController extends Controller
                 $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
                 ->join('employees','work_orders.employee_id','=','employees.id')
                 ->whereBetween('bookings.date',[$request->start, $request->end])
-                ->where('employees.id',$request->teknisi)
                 ->get();
-                $teknisiData = Employee::where('id',$request->teknisi)->get();
-                foreach ($teknisiData as $o) {
-                    $teknisi = $o->name;
-                }
             } else {
                 $data = Booking::whereBetween('date',[$request->start, $request->end])->get();
-                $teknisi = 'Tidak ada teknisi';
             }
             $status = 'semua';
             $service = 'semua';
@@ -428,20 +416,11 @@ class DashboardController extends Controller
                 $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
                 ->join('employees','work_orders.employee_id','=','employees.id')
                 ->whereBetween('bookings.date',[$request->start, $request->end])
-                ->where([
-                    ['bookings.service',$request->service],
-                    ['employees.id',$request->teknisi],
-                ])
                 ->get();
-                $teknisiData = Employee::where('id',$request->teknisi)->get();
-                foreach ($teknisiData as $o) {
-                    $teknisi = $o->name;
-                }
             } else {
                 $data = Booking::whereBetween('date',[$request->start, $request->end])
                 ->where('service',$request->service)
                 ->get();
-                $teknisi = 'Tidak ada teknisi';
             }
             $status = 'semua';
         } elseif($request->service == "semua") {
@@ -449,20 +428,11 @@ class DashboardController extends Controller
                 $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
                 ->join('employees','work_orders.employee_id','=','employees.id')
                 ->whereBetween('bookings.date',[$request->start, $request->end])
-                ->where([
-                    ['bookings.status',$request->status],
-                    ['employees.id',$request->teknisi],
-                ])
                 ->get();
-                $teknisiData = Employee::where('id',$request->teknisi)->get();
-                foreach ($teknisiData as $o) {
-                    $teknisi = $o->name;
-                }
             } else {
                 $data = Booking::whereBetween('date',[$request->start, $request->end])
                 ->where('status',$request->status)
                 ->get();
-                $teknisi = 'Tidak ada teknisi';
             }
             $service = 'semua';
         } else {
@@ -470,16 +440,7 @@ class DashboardController extends Controller
                 $data = WorkOrder::join('bookings','work_orders.booking_id','=','bookings.id')
                 ->join('employees','work_orders.employee_id','=','employees.id')
                 ->whereBetween('bookings.date',[$request->start, $request->end])
-                ->where([
-                    ['bookings.status',$request->status],
-                    ['bookings.service',$request->service],
-                    ['employees.id',$request->teknisi],
-                ])
                 ->get();
-                $teknisiData = Employee::where('id',$request->teknisi)->get();
-                foreach ($teknisiData as $o) {
-                    $teknisi = $o->name;
-                }
             } else {
                 $data = Booking::whereBetween('date',[$request->start, $request->end])
                 ->where([
@@ -487,11 +448,10 @@ class DashboardController extends Controller
                     ['service',$request->service],
                 ])
                 ->get();
-                $teknisi = 'Tidak ada teknisi';
             }
         }
         
-        return view('admin.report-search', compact('date','data','start','end','status','service','report','type','employee','teknisi'));
+        return view('admin.report-search', compact('date','data','start','end','status','service','report','type'));
     }
 
     public function changeEstimation(Request $request, $id){

@@ -10,7 +10,7 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Pelanggan</th>
+                    <th>Nama Cust / Phone</th>
                     <th>Tanggal / Waktu</th>
                     <th>Service</th>
                     <th>Teknisi</th>

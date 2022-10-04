@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Teknisi</title>
+    <title>Laporan Ranking</title>
 
     <style>
         * {
@@ -115,7 +115,7 @@
 <body>
     <center>
         <h2 class="judul">Laporan</h2>
-        <h4>Teknisi Motohid Car Repair</h4>
+        <h4>Reward Teknisi Motohid Car Repair</h4>
         <hr>
     </center>
 
@@ -137,12 +137,10 @@
     <table class="data">
         <thead>
             <tr class="data">
-                <th>No</th>
-                <th>Mobil</th>
-                <th>Pelanggan</th>
-                <th>Tanggal / Waktu</th>
-                <th>Service</th>
+                <th>Rank</th>
+                <th>Teknisi</th>
                 <th>Reward</th>
+                <th>Achievement</th>
             </tr>
         </thead>
         <tbody>
@@ -150,16 +148,14 @@
             @foreach($data as $o)
             <tr class="data">
                 <td>{{ $no++ }}</td>
-                <td>{{ $o->booking->brand }} | {{ $o->booking->type }} | {{ $o->booking->plate_no }}</td>
-                <td>{{ $o->booking->user->name }}</td>
-                <td>{{ $o->booking->date }} | {{ $o->booking->time }}</td>
-                <td>{{ $o->booking->service }} | {{ $o->booking->package }}</td>
-                <td style="width: 130px; text-align: right;">Rp {{ number_format(($o->booking->estimation * 0.2), 0, ',', '.') }}</td>
+                <td>{{ $o->name }}</td>
+                <td style="width: 130px; text-align: right;">Rp {{ number_format($o->reward, 0, ',', '.') }}</td>
+                <td>{{ number_format((float)$o->percentage, 2, '.', '') }}%</td>
             </tr>
             @endforeach
             <tr class="total" style="font-weight: bold;">
-                <td colspan="5" style="text-align: right;">Total Reward :</td>
-                <td style="text-align: right;">Rp {{ number_format(($estimasiBiaya * 0.2), 0, ',', '.')}}</td>
+                <td colspan="3" style="text-align: right;">Target Teknisi :</td>
+                <td style="text-align: right;">Rp 170.000.000</td>
             </tr>
         </tbody>
     </table>
