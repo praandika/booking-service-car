@@ -138,6 +138,7 @@
         <thead>
             <tr class="data">
                 <th>No</th>
+                <th>Teknisi</th>
                 <th>Mobil</th>
                 <th>Pelanggan</th>
                 <th>Tanggal / Waktu</th>
@@ -150,6 +151,7 @@
             @foreach($data as $o)
             <tr class="data">
                 <td>{{ $no++ }}</td>
+                <td>{{ $o->employee->name }}</td>
                 <td>{{ $o->booking->brand }} | {{ $o->booking->type }} | {{ $o->booking->plate_no }}</td>
                 <td>{{ $o->booking->user->name }}</td>
                 <td>{{ $o->booking->date }} | {{ $o->booking->time }}</td>
@@ -158,7 +160,7 @@
             </tr>
             @endforeach
             <tr class="total" style="font-weight: bold;">
-                <td colspan="5" style="text-align: right;">Total Reward :</td>
+                <td colspan="6" style="text-align: right;">Total Reward :</td>
                 <td style="text-align: right;">Rp {{ number_format(($estimasiBiaya * 0.2), 0, ',', '.')}}</td>
             </tr>
         </tbody>
